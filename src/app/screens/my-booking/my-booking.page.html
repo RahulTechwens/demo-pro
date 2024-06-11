@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"others.My_Booking" | translate}} </div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="red">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="bookingHistory != '' ">
+    <div class="card-main" *ngFor="let booking of bookingHistory?.slice().reverse()">
+      <div class="section1">
+        <div style="width:60%">
+          <div class="payment-wrapper">
+            <div class="pay-staus" *ngIf="booking.is_paid == '0'">{{"others.PAYMENT_DUE"  | translate}}</div>
+            <div class="pay-staus" *ngIf="booking.is_paid == '1'">{{"others.PAYMENT_DONE" | translate}}</div>
+          </div>
+        </div>
+        <div style="width:40%">
+          <div class="payment-label" >${{convertDecimalPoint(booking?.booking_amount)}}</div>
+        </div>
+      </div>
+
+      <div class="section2">
+        <div style="width:60%">
+          <div class="date-label">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <div>&nbsp;{{booking.date}}</div>
+          </div>
+          <div class="slot-label">
+            <ion-icon name="alarm-outline"></ion-icon>
+            <div>&nbsp;{{booking.slot}}</div>
+          </div>
+          <div class="slot-label" *ngIf="booking?.meeting">
+            <ion-icon name="key-outline"></ion-icon>
+            <div>&nbsp;{{booking?.meeting?.security_code}}</div>
+            &nbsp;<ion-icon name="copy-outline" (click)="copyTransactionId(booking?.meeting?.security_code)"></ion-icon>
+          </div>
+        </div>
+        <div class="icon-container" *ngIf="booking.meeting != null">
+         <img class="video-icon" src="assets/imgs/video-call.gif" (click)="startVideoCall(booking.meeting)">
+        </div>
+      </div>
+
+      <div class="border" *ngIf="global.user_role == 'Advisory'"></div>
+      <div class="user-main" *ngIf="global.user_role == 'Advisory'">
+        <img class="avatar" [src]="global?.image_path + booking?.user?.profile_picture?.path" />
+        <div class="details">
+          <div>{{booking?.user?.name}}</div>
+          <div>{{booking?.user?.email}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+             
+  <div *ngIf="skeliton_loader">
+    <div class="card-main" *ngFor="let booking of [1,1,1,1,1,1,1,1,1]">
+      <div class="section1">
+        <div style="width:100%">
+          <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+        </div>
+        <div style="width:40%">
+          <ion-skeleton-text animated style="width: 100%;"></ion-skeleton-text>
+        </div>
+      </div>
+
+      <div class="section2">
+        <div class="date-label">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+        <div class="slot-label">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      </div>
+      <div class="border" *ngIf="global.user_role == 'Advisory'"></div>
+      <div class="user-main" *ngIf="global.user_role == 'Advisory'">
+        <ion-skeleton-text animated style="width: 35px; height: 35px; border-radius: 50%;"></ion-skeleton-text>
+        <div class="details" style="width: 80%;">
+          <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>                                 
+          <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>                                 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="bookingHistory == '' && !skeliton_loader" class="notFoundMain">
+    <img src="../../assets/imgs/no-results.png" style="width:65px;opacity:0.8" />
+    <div style="margin-top:10px;font-size: 14px;">{{"others.booking_not_found" | translate}}</div>
+  </div>
+   
+</ion-content>
+

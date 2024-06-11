@@ -1,0 +1,112 @@
+
+ion-toolbar {
+    --background: #e9e7ff;
+   
+    ion-icon {
+      color: #999da8;
+      font-size: 16px;
+    }
+  }
+ion-content {
+    .card-main {
+        background-color: #fff;
+        margin: 12px;
+        padding: 8px 12px 12px 12px;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        //border-top: 1px solid red;
+        border-radius: 6px;
+
+        .section1 {
+            display: flex;
+
+            .payment-wrapper {
+                max-width: 116px;
+                background: rgb(83, 104, 255);
+                
+                //background: linear-gradient(90deg, rgba(255, 199, 198, 1) 35%, rgba(255, 255, 255, 1) 100%);
+                text-align: center;
+                padding: 4px;
+                border-radius: 4px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .pay-staus {
+                    color:#fff;
+                    font-size: 14px;
+                    
+                }
+            }
+
+            .payment-label {
+                width: 100%;
+                text-align: right;
+                font-size: 20px;
+            }
+        }
+
+        .section2 {
+            margin-top: 6px;
+            display: flex;
+            flex-direction: row;
+
+            .date-label {
+                margin-top: 10px;
+                font-size: 15px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .slot-label {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 15px;
+                margin-top: 8px;
+            }
+            .icon-container{
+                width: 40%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            .video-icon {
+                width: 100%;
+                text-align: right;
+                width: 58px;
+            }
+        }
+
+        .border{
+            margin-top:14px;
+            border:0.8px solid #DFE2E9
+        }
+        .user-main{
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .avatar{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            .details{
+                margin-left: 8px;
+                div{
+                    font-size: 14px;
+                }
+            }
+            
+        }
+
+    }
+}
+
+.notFoundMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+  }

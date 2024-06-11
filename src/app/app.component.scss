@@ -1,0 +1,57 @@
+.main {
+  position: relative;
+  padding-top: 98px;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 136px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background: #e9e7ff;
+  }
+
+  .avatar-image {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    img {
+      margin: auto;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: fill;
+    }
+  }
+
+
+
+  .name-role {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    .name {
+      font-size: 14px;
+      font-family: "fontSemiBold";
+      text-transform: capitalize;
+    }
+
+    .member {
+      font-size: var(--fontSmall);
+      color: var(--text-color-secondary);
+      padding-top: 5px;
+    }
+  }
+}
+.listmenu {
+  margin-top: 30px;
+  ion-item {
+    --padding-start: 30px;
+    ion-label {
+      --color: #363636;
+      font-size: var(--fontSmall);
+      letter-spacing: 0.6px;
+    }
+  }
+}

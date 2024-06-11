@@ -1,0 +1,32 @@
+ion-toolbar {
+  ion-icon {
+    color: var(--text-color-secondary);
+    font-size: 14px;
+  }
+}
+.amount {
+  margin: 25px;
+  background: #f4f4f9;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  align-items: center;
+
+  .amount-header {
+    font-size: var(--fontSmall);
+    color: #363636;
+  }
+
+  .amount-body {
+    font-size: var(--fontTitle);
+    padding-top: 5px;
+    font-family: "fontSemiBold";
+  }
+}
+
+.form-list {
+  ion-item {
+    --border-color: #e9e9ef;
+  }
+}

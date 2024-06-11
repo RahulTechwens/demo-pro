@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"home_page.contact-us" | translate}}</div>
+		<ion-buttons slot="start">
+			<ion-menu-button>
+				<img src="../../assets/imgs/menu.png" style="width:50%" />
+			</ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding class="content-background">
+	<div class="flex-div">
+		<div class=input-form padding>
+			<div class="headingLabel">{{"home_page.contact-us-lable" | translate}}</div>
+			<div style="margin-top:45px">
+				<div class="subHeading">{{"home_page.name" | translate}}</div>
+				<ion-input type="text" [(ngModel)]="name" class="textInput" clearOnEdit=false></ion-input>
+
+				<div class="subHeading">{{"home_page.email" | translate}}</div>
+				<ion-input type="email" [(ngModel)]="email" class="textInput" clearOnEdit=false></ion-input>
+
+				<div class="subHeading">{{"home_page.phone" | translate}}</div>
+				<ion-input type="tel" [(ngModel)]="phone" maxLength="15" class="textInput" clearOnEdit=false>
+				</ion-input> 
+
+				<div class="subHeading">{{"home_page.messege" | translate}}</div>
+				<ion-textarea class="textarea" clearOnEdit="true" rows="3" [(ngModel)]="message"></ion-textarea>
+			</div>
+		</div>
+		<div class="button2">
+			<div style="color:#fff" (click)="contactUs()">{{"home_page.contact_req_send" | translate}}</div>
+		</div>
+	</div>
+
+</ion-content>

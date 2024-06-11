@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"others.Consultation_Charge" | translate}} </div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-background">
+  <div style="margin:12px;padding:12px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;border-radius: 8px;background-color: #fff">
+    <div class="form-div">
+      <ion-input type="tel" maxLength="6" [(ngModel)]="consultationRate" placeholder="{{'others.amount' | translate}}" class="textInput"
+        style="margin-left:5px" clearOnEdit=false>
+      </ion-input>
+  
+      <div class="global-button padding" (click)="updateRate()">
+        <div>{{"others.update_btn" | translate}}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

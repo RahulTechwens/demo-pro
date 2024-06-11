@@ -1,0 +1,167 @@
+.header {
+    //--background: #fff;
+  }
+  
+  .flex-div {
+    .input-form {
+      max-width: 450px;
+      margin: 0 auto;
+      width: 100%;
+      padding-top: 12px !important;
+      padding: 0 16px;
+      padding-left: 25px;
+      padding-right: 25px;
+      letter-spacing: 0.5px;
+  
+      .headingLabel {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--text-color-primary);
+        letter-spacing: 0.5px;
+      }
+  
+      .subHeading {
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-color-primary);
+        letter-spacing: 0.5px;
+  
+        .new-option {
+          font-weight: 600;
+        }
+      }
+  
+      .phone-container{
+        display: flex;
+        .selectBox{
+          border: 1px solid #D5DBE1;
+          border-radius: 5px;
+          font-size: 14px;
+          color: #121F3E;
+          margin-top: 15px;
+          height: 50px;
+          padding-right: 8px;
+          letter-spacing: 0.5px;
+          background-color: rgb(255, 255, 255);
+        }
+        .textInput {
+          border: 1px solid #D5DBE1;
+          border-radius: 5px;
+          font-size: 14px;
+          color: #121F3E;
+          margin-top: 15px;
+          height: 50px;
+          padding-right: 8px;
+          letter-spacing: 0.5px;
+          background-color: rgb(255, 255, 255);
+          margin-left: 7px;
+        }
+      }
+  
+      .textInput {
+        border: 1px solid #D5DBE1;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #121F3E;
+        margin-top: 15px;
+        height: 50px;
+        padding-right: 8px;
+        letter-spacing: 0.5px;
+        background-color: rgb(255, 255, 255);
+       
+      }
+  
+      .paswordInput {
+        font-size: 14px;
+        color: #121F3E;
+        padding-right: 8px;
+        letter-spacing: 0.5px;
+        background-color: rgb(255, 255, 255);
+      }
+  
+      .passwordContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border: 1px solid #D5DBE1;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: 15px;
+        padding-right: 12px;
+        height: 50px;
+        letter-spacing: 0.5px;
+      }
+  
+      .icon {
+        height: 25px;
+        width: 25px;
+        // color:#96A0B5
+        color: var(--text-color-secondary);
+      }
+  
+      .button {
+        background-color: var(--tertiary);
+        margin-top: 70px;
+        padding: 15px;
+        border-radius: 25px;
+        letter-spacing: 0.5px;
+        height: 50px;
+        text-align: center;
+        color: var(--white-color);
+      }
+    }
+  }
+  
+  
+  ion-input {
+    --padding-end: 12px;
+  }
+  
+  ion-footer {
+    .footerContainer {
+      padding-top: 35px;
+      padding-bottom: 45px;
+  
+      padding-right: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .subHeading {
+        font-size: 14px;
+        font-weight: 500;
+        color: #121F3E
+      }
+  
+      .subHeading2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--tertiary);
+        margin-left: 4px
+      }
+    }
+  }
+  
+  .radiogrp {
+    display: flex;
+    flex-direction: 'row';
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px
+  }
+  
+  .dateInputfield {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center
+  }
+  
+  .fieldLabel {
+    color: #121F3E;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px
+  }

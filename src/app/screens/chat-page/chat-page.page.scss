@@ -1,0 +1,103 @@
+
+  
+  ion-back-button{
+    --color: rgb(62, 62, 62) !important;
+  }
+ion-content{
+    --ion-background-color:#fff;
+   }
+.txtArea{
+    border: 1px solid #c2c2c2;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #121F3E;
+    background-color: #fff;
+    margin-right: 10px;
+    margin-left: 10px;
+    max-height: 100px;
+}
+
+.type:before {
+    content: 'typing..';
+    animation-name: head;
+    //animation-duration: 30s;
+    animation-duration: 18s; 
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+@keyframes head {
+    0% {opacity:0;}
+    5% {opacity:1; content: "typing...";  }
+    10% {opacity:0;}
+    15% {opacity:1; content: "typing.."; }
+    20% {opacity:0; }
+    25% {opacity:1; content: "typing..."}
+    30% {opacity:0;}
+    35% {opacity:1; content: "typing.."}
+    40% {opacity:0; }
+    45% {opacity:1; content: "typing..."}
+    50% {opacity:0; }
+    
+}
+
+.loading:before {
+    content: 'Loading..';
+    animation-name: head2;
+    //animation-duration: 30s;
+    animation-duration: 18s; 
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+@keyframes head2{
+    0% {opacity:0;}
+    5% {opacity:1; content: "Loading...";  }
+    10% {opacity:0;}
+    15% {opacity:1; content: "Loading.."; }
+    20% {opacity:0; }
+    25% {opacity:1; content: "Loading..."}
+    30% {opacity:0;}
+    35% {opacity:1; content: "Loading.."}
+    40% {opacity:0; }
+    45% {opacity:1; content: "Loading..."}
+    50% {opacity:0; }
+    
+}
+
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+
+.emoji {
+    display: inline-block;
+    flex-grow: 1;
+    height:100px;    
+    width: calc(100% * (1/4) - 10px - 1px)
+}
+
+
+
+.items-main-div{
+    display: flex; flex-wrap: wrap;
+    // justify-content: center;
+    justify-content: flex-start;
+    padding: 0px 12px 8px 12px;
+    background-color: #c2c2c2;
+    .item-loop-div{
+        // width:45%;
+        width:13%;
+        margin:5px;
+        .item-div{
+            font-size: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            // new added END ==>
+        }
+    }
+}
+
+

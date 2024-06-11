@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"others.Leave_Slots" | translate}}</div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-content" *ngIf="!loading">
+    <div class="items-main-div">
+      <div class="item-loop-div" *ngFor="let item of leaveSlotArr; let i=index">
+        <div class="item-div">
+          <div class="item-title">{{item?.leave_dates}}</div>
+          <ion-icon name="close-outline" class="closeIcon" (click)="removeDate(item?.leave_dates)"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Skeliton Loader-->
+  <div class="main-content" *ngIf="loading">
+    <div class="items-main-div">
+      <ion-skeleton-text animated class="item-loop-div"
+        style="background-color:#e9e7ff;border-radius: 8px;min-height:40px;"
+        *ngFor="let item of [1,1,1,1,1,1,1,1,1]; let i=index">
+      </ion-skeleton-text>
+    </div>
+  </div>
+  <!-- value="{{date}}" -->
+  <ion-modal trigger="open-modal" class="date-modal">
+    <ng-template>
+      <ion-content>
+        <ion-datetime color="medium" mode="ios" size="cover" presentation="date" #popoverDatetime
+          (ionChange)="selectDate(popoverDatetime.value)" [min]="maxDate">
+        </ion-datetime>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: #ffff;">
+  <div class="button-container" style="padding:10px;padding-top: 0px;">
+    <div class="global-button" style="background-color: rgb(80, 79, 79);border-radius:0px">
+      <div></div>
+      <div id="open-modal">{{"others.Add_New_Leave_Slot" | translate}}</div>
+      <div></div>
+    </div>
+
+  </div>
+</ion-footer>

@@ -1,0 +1,7 @@
+{
+  "appId": "com.privategroup.app",
+  "appName": "privategroup",
+  "webDir": "www",
+  "bundledWebRuntime": false
+ 
+}

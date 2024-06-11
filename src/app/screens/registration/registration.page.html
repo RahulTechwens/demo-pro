@@ -1,0 +1,121 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <ion-buttons>
+      <ion-back-button text="" icon="arrow-back-outline" style="color:#000;margin-top: 12px"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="content-background">
+
+
+  <div class="flex-div">
+    <div class=input-form padding>
+      <div class="headingLabel">{{"signup_page.header_title" | translate}}</div>
+
+      <div style="margin-top:45px">
+        <div class="subHeading">{{"signup_page.name_label" | translate}}</div>
+        <ion-input type="text" [(ngModel)]="name" placeholder="{{'signup_page.name_placeholder' | translate}}"
+          class="textInput" clearOnEdit=false>
+        </ion-input>
+
+        <div class="subHeading">{{'signup_page.contact_number_label' | translate}}</div>
+        <div class="phone-container">
+          <ion-select interface="action-sheet"  [(ngModel)]="dial_code"
+            placeholder="Select" class="selectBox" placeholder="{{'signup_page.occupation_placeholder' | translate}}">
+            <ion-select-option value="+49">+49</ion-select-option>
+          </ion-select>
+          <ion-input type="tel" maxLength="15" [(ngModel)]="contact_number"
+            placeholder="{{'signup_page.contact_number_placeholder' | translate}}" class="textInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+
+        <div class="subHeading">{{"signup_page.email_label" | translate}}</div>
+        <div class="passwordContainer" style="padding-right: 0px;">
+          <ion-input type="email" [(ngModel)]="email" placeholder="{{'signup_page.email_placeholder' | translate}}"
+            class="paswordInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+
+        <div class="subHeading" style="margin-top:24px">{{"signup_page.gender_label" | translate}}</div>
+        <ion-radio-group class="radiogrp" [(ngModel)]="gender">
+
+          <ion-radio slot="start" value="0" color='primary' style="opacity:1"></ion-radio>
+          <div class="otherLabel" style="margin-left:10px;margin-right:12px">{{"myaccount_page.male" | translate}}</div>
+
+          <ion-radio slot="start" value="1" color='primary' style="opacity:1"></ion-radio>
+          <div class="otherLabel" style="margin-left:10px;margin-right:12px">{{"myaccount_page.female" | translate}}
+          </div>
+
+          <ion-radio slot="start" value="2" color='primary' style="opacity:1"></ion-radio>
+          <div class="otherLabel" style="margin-left:10px;margin-right:5px">{{"myaccount_page.other" | translate}}</div>
+        </ion-radio-group>
+
+        <div class="subHeading" style="margin-top:25px">{{"signup_page.occupation_label" | translate}}</div>
+        <ion-select [(ngModel)]="occupation" placeholder="Select" class="textInput"
+          placeholder="{{'signup_page.occupation_placeholder' | translate}}">
+          <ion-select-option *ngFor="let option of occupation_dropwoen_arr" [value]="option.id">{{option.name}}
+          </ion-select-option>
+        </ion-select>
+
+
+        <div class="subHeading">{{"signup_page.dob_label" | translate}}</div>
+        <div class="passwordContainer" style="padding-right: 0px;" id="open-modal">
+          <ion-input type="text" readonly placeholder="{{'signup_page.dob_placeholder' | translate}}" [(ngModel)]="dob"
+            class="paswordInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+
+        <ion-modal trigger="open-modal" class="dob-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime mode="ios" size="cover" value="{{dob}}" #popoverDatetime presentation="date" [showDefaultButtons]="true"
+                (ionChange)="formatDate(popoverDatetime.value)" [max]="maxDate"></ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <div class="subHeading" style="margin-top:25px">{{"signup_page.natinality_lable" | translate}}</div>
+        <ion-select [(ngModel)]="nationality" placeholder="Select" class="textInput"
+          placeholder="{{'signup_page.occupation_placeholder' | translate}}">
+          <ion-select-option *ngFor="let option of nationality_dropwoen_arr" [value]="option.country_code">{{option.country}}
+          </ion-select-option>
+        </ion-select>
+
+        <div class="subHeading">{{"signup_page.password_label" | translate}}</div>
+        <div class="passwordContainer">
+          <ion-input [type]="passwordType" [(ngModel)]="password"
+            placeholder="{{'signup_page.password_placeholder' | translate}}" class="paswordInput" clearOnEdit=false>
+          </ion-input>
+          <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword('password')"
+            class="icon"></ion-icon>
+        </div>
+
+        <div class="subHeading">{{"signup_page.con_password_label" | translate}}</div>
+        <div class="passwordContainer">
+          <ion-input [type]="con_passwordType" [(ngModel)]="confirm_password"
+            placeholder="{{'signup_page.con_password_placeholder' | translate}}" class="paswordInput" clearOnEdit=false>
+          </ion-input>
+          <ion-icon item-end [name]="con_passwordIcon" class="passwordIcon" (click)="hideShowPassword('con')"
+            class="icon"></ion-icon>
+        </div>
+      </div>
+
+      <div class="global-button" (click)="registration()">
+        <!-- <div></div> -->
+        <div>{{'login_page.create_account' | translate}}</div>
+        <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+      </div>
+    </div>
+
+    <ion-footer class="ion-no-border">
+      <div class="footerContainer" (click)="gotoSignin()">
+        <div class="subHeading">{{"signup_page.already_account" | translate}}</div>
+        <div class="subHeading2">{{"login_page.header_title" | translate}}</div>
+      </div>
+    </ion-footer>
+  </div>
+
+
+  <!-- <ion-icon class="ios-eye-off"  (click)="passwordToggle('show')" name="ios-eye-outline" item-right></ion-icon> -->
+</ion-content>

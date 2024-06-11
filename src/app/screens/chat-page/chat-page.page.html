@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-transform:capitalize;">{{memberDetails?.name}}</ion-title>
+    <div class="subtitle" *ngIf="typing" style="margin-left:15px"><span class="type"></span></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="msgArr != '' && chat_load == false;">
+    <div *ngFor="let msg of msgArr">
+      <div *ngIf="msg.uid == cur_user"
+        style="margin:8px 10px;display:flex;justify-content:flex-end;align-items: flex-end;flex-direction: row;">
+        <div
+          style="padding: 11px 10px 6px 8px;margin-bottom: 10px;background-color: #6370ff;max-width: 70%; min-width: 30%;letter-spacing: 0.8px;border-radius:10px 0px 10px 0px;;color:#fff">
+          <div *ngIf="msg?.text != '' ">{{msg?.text}}</div>
+          <div *ngIf="msg?.media != '' ">
+            <img *ngFor="let img of msg?.media" src="{{this.global.image_path + img}}"
+              style="width: 250px;border-radius: 10px;object-fit:fill" (click)="viewPhoto(img)" />
+          </div>
+          <div style="padding-top:1px;font-size:12px;text-align:right">{{msg?.messagTime}}</div>
+        </div>
+      </div>
+      <div *ngIf="msg.uid != cur_user"
+        style="margin:8px 10px;display:flex;justify-content:flex-start;align-items: flex-start;flex-direction: row;">
+        <div
+          style="padding: 11px 10px 6px 8px;margin-bottom: 10px;background-color: #eeeeee;max-width: 70%; min-width: 30%;letter-spacing: 0.8px;border-radius: 0px 10px 0px 10px;color:#000">
+          <div *ngIf="msg?.text">{{msg?.text}}</div>
+          <div *ngIf="msg?.media != '' ">
+            <img *ngFor="let img of msg?.media" src="{{this.global.image_path + img}}"
+              style="width: 250px;border-radius: 10px;object-fit:fill" (click)="viewPhoto(img)" />
+          </div>
+          <div style="padding-top:1px;font-size:12px;text-align:right">{{msg?.messagTime}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="chat_load == true"
+    style="height:100%;display:flex;justify-content: center;align-items: center;flex-direction: row;">
+    <div class="subtitle" style="margin-left:15px">
+      <span class="loading"></span>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <div
+    style="display: flex;justify-content: space-between;padding: 0px 10px 6px 0px;align-items: flex-end;background: #e9e7ff;">
+    <ion-textarea #hvUserPost placeholder="{{'home_page.messege' | translate}}" class="txtArea" type="text"
+      autoGrow="true" [(ngModel)]="msg" (keyup)="typingEffect()">
+    </ion-textarea>
+    <!-- <img *ngIf="!typing" src="../../../assets/imgs/attached.png" style="width:30px;height:30px;margin-bottom: 7px;position: absolute;right: 68px;bottom: 11px;z-index: 999;" /> -->
+    <div (click)="sendMessage()" *ngIf="msg != '' ">
+      <img src="../../../assets/imgs/email.png" style="width:30px;height:30px;margin-bottom: 7px;" />
+    </div>
+    <div (click)="mediaOptions()" *ngIf="msg == '' ">
+      <img src="../../../assets/imgs/attached.png" style="width:30px;height:30px;margin-bottom: 7px;" />
+    </div>
+  </div>
+</ion-footer>

@@ -1,0 +1,14 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{content?.heading}}</div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p [innerHTML]="content?.content" style="padding: 0px 12px;"></p>
+</ion-content>

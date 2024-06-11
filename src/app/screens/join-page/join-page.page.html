@@ -1,0 +1,89 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="group-header">
+    <ion-item lines="none">
+      <ion-thumbnail slot="start">
+        <img src="assets/imgs/group1.png" />
+      </ion-thumbnail>
+      <div>
+        <div class="title">Love Hertache</div>
+        <div class="group-type">
+          <ion-icon color="medium" src="assets/imgs/lock.svg"></ion-icon>Private
+          Group
+        </div>
+        <div class="members-count">
+          <div class="bullet"></div>
+          221k+ Members
+          <div class="bullet" style="margin-left: 10px"></div>
+          221k+ Advisor
+        </div>
+      </div>
+    </ion-item>
+  </div>
+
+  <div class="divider" style="margin-top: 20px"></div>
+
+  <div class="group-details">
+    <div class="description">
+      Hi, <span>Ben Schmidt</span> You're one step away from being a member of
+      the group
+    </div>
+
+    <div class="sub-title">Unlock these amazing features</div>
+
+    <div class="benefits">
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          <ion-label>Life time Membership</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          <ion-label>Unlimited Post</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          <ion-label>Book advisor for consultation</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          <ion-label>View all group members profile</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="amount">
+    <div class="amount-header">Amount to pay</div>
+    <div class="amount-body">$30</div>
+  </div>
+
+  <div class="payment-options">
+    <ion-item lines="none" class="paypal" (click)="selectedOption='paypal'">
+      <img slot="start" src="assets/imgs/paypal.svg" alt="" />
+      <ion-icon
+        slot="end"
+        src="assets/imgs/{{selectedOption == 'paypal' ? 'checkmark-active' : 'checkmark'}}.svg"
+      ></ion-icon>
+    </ion-item>
+    <ion-item
+      lines="none"
+      class="paypal cards"
+      (click)="payWithCardModal()"
+    >
+      <div class="cards-title" slot="start">Pay with Credit Card</div>
+      <ion-icon
+        slot="end"
+        src="assets/imgs/{{selectedOption == 'cards' ? 'checkmark-active' : 'checkmark'}}.svg"
+      ></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>

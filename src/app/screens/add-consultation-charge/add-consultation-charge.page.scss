@@ -1,0 +1,32 @@
+ion-toolbar {
+    --background: #e9e7ff;
+   
+    ion-icon {
+        color: #999da8;
+        font-size: 16px;
+    }
+}
+
+ion-content {
+   
+    .form-div{
+        padding: 0px 18px 12px 0px;
+        .textInput{
+            border: 1px solid #D5DBE1;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #1d1d1d;
+            margin-top:15px;
+            height:50px;
+            padding-right:8px;
+            letter-spacing: 0.5px;
+            background-color: rgb(255, 255, 255);
+            width:100%;
+          }
+          .padding{
+            margin-top: 16px;
+            width: 40%;
+          }
+    }
+    }
+    

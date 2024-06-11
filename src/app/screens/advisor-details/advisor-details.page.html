@@ -1,0 +1,174 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+ 
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%;margin-bottom: 12px;" />
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar
+      class="custom-searchbar-header"
+      placeholder="{{'home_page.search_placeholder' | translate}}"
+      mode="ios"
+      searchIcon="assets/imgs/search.svg"
+      (click)="searchGrp()"
+    ></ion-searchbar>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" style="margin-bottom:13px"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+    <div class="avatar-image">
+      <img [src]="global?.image_path+advisorDetails?.profile_picture?.path" />
+    </div>
+    <div class="name-role">
+      <div class="name">{{advisorDetails?.name}}</div>
+      <div class="member">{{"others.Advisor" | translate}}</div>
+    </div>
+  </div>
+
+  <div class="video-call-option">
+    <div class="price-icon flex-space-between">
+      <div>
+        <div class="subtext">{{"others.Consulting_Fees" | translate}} </div>
+        <div class="price">{{advisorDetails?.consulation_charge}}/hr</div>
+      </div>
+
+      <div class="cam-icon">
+        <ion-icon name="videocam"></ion-icon>
+      </div>
+    </div>
+
+    <div class="video-options">
+      <div class="header">{{"others.Online_Video_Call" | translate}}</div>
+      <div class="flex-space-between">
+        <div class="img-con">
+         <img src="assets/imgs/twiloo.png" alt="" />
+        </div>
+        <!-- <div class="img-con">
+            <img src="assets/imgs/webex.png" alt="" />
+        </div>
+        <div class="img-con">
+          <img src="assets/imgs/agora.png" alt="" />
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="appointment flex-space-between" (click)="presentModal()">
+      <div class="subtext">{{"others.Book_Appointment" | translate}} </div>
+      <ion-icon name="calendar-outline"></ion-icon>
+  </div>
+
+  <!-- <div class="suggested-group">
+    <div class="divider" style="margin-top: 25px"></div>
+    <div class="flex-space-between" style="margin-top: 10px">
+      <div class="title" style="margin: 0;">About</div>
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </div>
+    <div class="divider" style="margin-top: 10px"></div>
+  </div> -->
+<!-- 
+  <div class="group-slider">
+    <div class="title">Groups</div>
+    <ion-slides [options]="slideOptions">
+      <ion-slide
+        *ngFor="let item of [1,1,1,1]"
+        [routerLink]="['/', 'group-post']"
+      >
+        <div class="slide-box">
+          <div class="group-image">
+            <img src="assets/imgs/group2.png" alt="" />
+          </div>
+          <div class="shadow-overlay">
+            <div class="group-title">Love Hertache</div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+   
+  </div> -->
+
+  
+
+  <!-- <div class="posts">
+    <div class="title" style="margin-bottom: 25px">Posts</div>
+    <div class="post-container" *ngFor="let item of [0,1]">
+      <div class="member-container">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/group-avatar.png" />
+        </ion-avatar>
+        <div>
+          <div class="member-name">Ben Schmidt</div>
+          <div class="member-subtitle">30 mins</div>
+        </div>
+      </div>
+
+      <img class="post-image" src="assets/imgs/post1.jpg" alt="" />
+
+      <div class="post-caption">Happy any time without do anything explain</div>
+
+      <div class="divider" style="margin-top: 16px"></div>
+      <div class="action-section">
+        <div class="like-comment">
+          <div class="like">
+            <ion-icon src="assets/imgs/like.svg"></ion-icon>Like
+          </div>
+          <div class="comment" style="margin-left: 20px">
+            <ion-icon src="assets/imgs/comment.svg"></ion-icon>Comment
+          </div>
+        </div>
+        <div class="comment-number">3 Comment</div>
+      </div>
+      <div class="divider" style="margin-top: 10px"></div>
+
+      <div >
+        <div class="comment-reply">
+          <div class="avatar">
+            <ion-avatar>
+              <img src="assets/imgs/p2.png" />
+            </ion-avatar>
+          </div>
+
+          <div style="width: 82%">
+            <div class="name-comment-options">
+              <div class="flex-space-between">
+                <div>
+                  <div class="member-name">Ben Schmidt</div>
+                  <div class="member-subtitle">30 mins</div>
+                </div>
+
+                <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+              </div>
+
+              <div class="comment-body">
+                Happy any time without do anything explain
+              </div>
+            </div>
+
+            <div class="like-reply">
+              <span>Like</span>
+              <span class="ion-padding-start">Reply</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment-reply">
+          <div class="avatar">
+            <ion-avatar>
+              <img src="assets/imgs/p2.png" />
+            </ion-avatar>
+          </div>
+          <div style="width: 82%">
+            <ion-item lines="none" class="input-item" (click)="commentModal()"> </ion-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</ion-content>

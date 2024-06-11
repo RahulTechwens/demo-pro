@@ -1,0 +1,111 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="margin-left: 0">
+      <ion-menu-toggle>
+        <img src="{{global.image_path+global?.userdetails?.profile_picture?.path}}" alt="" style="border-radius: 50%; width: 40px; height: 40px;object-fit: fill;" />
+      </ion-menu-toggle>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-icon name="search-outline" (click)="searchGrp()"></ion-icon>
+    </ion-buttons> -->
+  </ion-toolbar>
+  <div style="padding: 10px 0px; background: #f9f9f9" >
+    <ion-searchbar  class="custom-searchbar-header" (click)="searchGrp()" placeholder="{{'home_page.search_placeholder' | translate}}" mode="ios"
+      searchIcon="assets/imgs/search.svg"></ion-searchbar>
+  </div>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="red">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="banner ion-text-center">
+    <img src="assets/imgs/group-banner.png" alt="" />
+  </div>
+  <div class="group-info">
+    <div class="gorup-title">{{homeContent?.section_head_text}}</div>
+    <div class="group-des" [innerHTML]="homeContent?.content">                             
+    </div>
+    <!-- <div class="global-button" [routerLink]="['/', 'home']">
+      <div>{{"home_page.join_btn" | translate}}</div>
+      <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+    </div> -->
+
+    <!-- <div class="user-group">
+      <div class="img-container">
+        <img src="assets/imgs/p4.png" />
+      </div>
+
+      <div class="img-container">
+        <img src="assets/imgs/p3.png" class="overlap-image" style="left: -12px" />
+      </div>
+      <div class="img-container">
+        <img src="assets/imgs/p2.png" class="overlap-image" style="left: -24px" />
+      </div>
+      <div class="img-container">
+        <img src="assets/imgs/p1.png" class="overlap-image" style="left: -36px" />
+      </div> -->
+
+      <!-- <div class="user-count">221k+ Advisor</div> -->
+    <!-- </div> -->
+  </div>
+
+  <div class="advisor-card" (click)="gotoAdvisorPage()" *ngIf="global.user_role != 'Advisory'">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="global?.image_path+consultantData?.profile_picture?.path" style="object-fit: fill;"/>
+      </ion-avatar>
+      <div>
+        <div class="subtext">{{"others.direct_consultatant_label" | translate}}</div>
+        <div class="title" style="text-transform:capitalize;">{{consultantData?.name}}</div>
+        <div class="subtext">{{"others.Advisor" | translate}}</div>
+      </div>
+    </ion-item>
+    <div class="cam-icon">
+      <ion-icon name="videocam"></ion-icon>
+    </div>
+  </div>
+
+  <div class="group-list" *ngIf="suggested_grp != '' ">
+    <div class="title" style="margin-bottom: 0px;"> {{"home_page.suggest_grp_label" | translate}}</div>
+    <ion-list lines="full">
+      <ion-item *ngFor="let group of suggested_grp">
+        <ion-thumbnail slot="start">
+          <img
+            [src]="group?.profile_picture?.path?api.image_path+group?.profile_picture?.path:api.image_path+'images/noimage.jpg'" />
+        </ion-thumbnail>
+        <div>
+          <div class="group-title">{{group?.group_name}}</div>
+          <div class="group-subtext">${{group?.group_charge}}</div>
+          <!-- <div class="group-subtext">15 Advisory</div> -->
+        </div>
+        <ion-button (click)="grpdetails(group,'suggested_grp')" mode="ios" slot="end" expand="block" fill="solid">
+          {{"home_page.view" | translate}}
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="group-list" *ngIf="requested_grp != '' ">
+    <div class="title" style="margin-bottom: 0px;"> {{"home_page.joinRequested_grp_label" | translate}}</div>
+    <ion-list lines="full">
+      <ion-item *ngFor="let group of requested_grp">
+        <ion-thumbnail slot="start">
+          <img [src]="group?.group?.profile_picture?.path?api.image_path+group?.group?.profile_picture?.path:api.image_path+'images/noimage.jpg'" />
+        </ion-thumbnail>
+        <div>
+          <div class="group-title">{{group?.group?.group_name}}</div>
+          <div class="group-subtext">${{group?.group?.group_charge}}</div>
+          <div class="group-subtext" style="text-transform:capitalize;">{{group?.approval_status}}</div>
+        </div>
+        <ion-button (click)="grpdetails(group,'requested_grp')" mode="ios" slot="end" expand="block" fill="solid">
+          {{"home_page.view" | translate}}
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+</ion-content>

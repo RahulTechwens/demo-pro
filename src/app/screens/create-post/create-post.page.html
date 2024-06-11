@@ -1,0 +1,66 @@
+<!-- <ion-header class="no">
+  <ion-toolbar>
+    <ion-title>Create Post</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div style="padding: 8px 25px 68px 25px;border-top-right-radius: 30px;border-top-left-radius: 30px;">
+    <div style="display: flex;flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;">
+      <div style="margin-top:15px;background-color:#D6DFDC;width:30px;height:5px;border-radius: 25px;">
+      </div>
+    </div>
+    <div style="display:flex;justify-content: space-between;flex-direction: row;margin-bottom: 15px;">
+      <div style="color: #133A2B;font-size: 18px;margin-top: 26px;font-weight: 600;">{{"home_page.create_post_title" |
+        translate}}</div>
+      <ion-icon name="close-outline" style="font-size:32px" (click)="close()"></ion-icon>
+    </div>
+    <div style="padding-top:10px">
+      <ion-textarea class="txtArea" #hvUserPost type="text" autoGrow="true" [(ngModel)]="text_content"
+        placeholder="{{'home_page.write_something' | translate}}">
+      </ion-textarea>
+    </div>
+
+    <!-- <div class="items-main-div">
+      <div class="item-loop-div" style="position: relative;" *ngFor="let img of imageArr; let i = index">
+        <div class="item-div">
+          <div style="height:120px;width:120px;max-width: 120px;margin-left: 25px;">
+            <img class="item-image" src="{{img}}" />
+          </div>
+        </div>
+        <div style="position: absolute;top:6px;right:0px;" (click)="deleteImg(i)">
+          <ion-icon name="close-circle" style="font-size: 28px;color: #fff;"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="items-main-div">
+      <div *ngFor="let img of imageArr; let i = index" class="item-loop-div" style="position: relative;">
+        <div style="height: 90px;">
+          <img class="item-image" src="{{img}}" />
+        </div>
+        <div style="position:absolute;top:3px;right:1px;" (click)="deleteImg(i)">
+          <ion-icon name="close-circle" style="font-size: 24px;color: #fff;"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer class="ion-no-border" style="background: #ffff;">
+  <div style="padding:10px;display: flex;justify-content: flex-start; align-items: center;">
+    <div class="global-button" style="width:82%;border-radius:0px" (click)="publishPost()"
+      [ngStyle]="{'background-color': (this.text_content.trim() || this.blobArr.length >= 1)? '#5367ff' : '#d1d1d1'}">
+      <div></div>
+      <div>{{"home_page.create_post_button" | translate}}</div>
+      <div></div>
+    </div>
+    <div style="margin-left: 20px;padding-top: 35px;" (click)="imgUpload()">
+      <img style="width:45px" src="../../assets/imgs/upload.png" />
+    </div>
+  </div>
+</ion-footer>

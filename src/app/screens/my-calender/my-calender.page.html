@@ -1,0 +1,313 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"others.Consultation_Hours" | translate}} </div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-main">
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.sunday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="start-modal" [(ngModel)]="start_time.sunday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.sunday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','sunday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="end-modal" type="tel" [(ngModel)]="end_time.sunday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.sunday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','sunday')"></ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+    <!--Monday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.monday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="mon_start-modal" [(ngModel)]="start_time.monday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="mon_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.monday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','monday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="mon_end-modal" type="tel" [(ngModel)]="end_time.monday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="mon_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.monday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','monday')"></ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+    <!--Tuesday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.tuesday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="tues_start-modal" [(ngModel)]="start_time.tuesday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="tues_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.tuesday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','tuesday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="tues_end-modal" type="tel" [(ngModel)]="end_time.tuesday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="tues_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.tuesday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','tuesday')"></ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+    <!--Wednesday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.wednesday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="wed_start-modal" [(ngModel)]="start_time.wednesday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="wed_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.wednesday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','wednesday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="wed_end-modal" type="tel" [(ngModel)]="end_time.wednesday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="wed_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.wednesday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','wednesday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+    <!--Thursday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.thursday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="thursday_start-modal" [(ngModel)]="start_time.thursday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="thursday_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.thursday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','thursday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal> 
+
+        <ion-input readonly id="thursday_end-modal" type="tel" [(ngModel)]="end_time.thursday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="thursday_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.thursday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','thursday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+
+    <!--Friday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.friday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="fri_start-modal" [(ngModel)]="start_time.friday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="fri_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.friday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','friday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="fri_end-modal" type="tel" [(ngModel)]="end_time.friday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="fri_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.friday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','friday')"></ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+
+    <!--Saturday-->
+
+    <div class="item-main">
+      <div class="label-wraper">
+        <ion-label class="input-label">
+          {{"others.saturday" | translate}}
+        </ion-label>
+        <!--<ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+        <!-- <ion-icon color="primary" name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon> -->
+      </div>
+
+      <div class="input-wraper">
+        <ion-input readonly type="tel" id="sat_start-modal" [(ngModel)]="start_time.saturday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+
+        <ion-modal trigger="sat_start-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="start_time.saturday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'start','saturday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-input readonly id="sat_end-modal" type="tel" [(ngModel)]="end_time.saturday" placeholder="HH:MM"
+          class="textInput" style="margin-left:5px" clearOnEdit=false [readonly]="true">
+        </ion-input>
+
+        <ion-modal trigger="sat_end-modal" class="time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime [value]="end_time.saturday" mode="ios" size="cover" #popoverDatetime presentation="time"
+                [showDefaultButtons]="true" (ionChange)="getTime(popoverDatetime.value,'end','saturday')">
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border" style="background: #ffff;">
+  <div class="button-container" style="padding:10px;padding-top: 0px;">
+    <div class="global-button" style="margin-top: 2px;background-color: rgb(80, 79, 79);border-radius:0px" (click)="updatetimeSlot()">
+      <div></div>
+      <div>{{"myaccount_page.save_label" | translate}}</div>
+      <div></div>
+    </div>
+
+  </div>
+</ion-footer>

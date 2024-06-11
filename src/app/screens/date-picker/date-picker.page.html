@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="calendar-wrapper">
+    <div style="padding:0px 25px">
+      <div class="title">{{"others.choose_date_time" | translate}} </div>
+      <ion-datetime mode="md" [min]="minDate" [max]="maxDate" presentation="date"
+        (ionChange)="fetchSlots(popoverDatetime.value)" id="datep" #popoverDatetime>
+      </ion-datetime>
+    </div>
+
+    <!-- <div class="divider"></div> -->
+
+    <div class="items-main-div" *ngIf="availableSlots != ''">
+      <div *ngFor="let point of availableSlots; let i=index" (click)="selectSlot(i)"
+        [ngClass]="point.selected == true ? 'item-loop-div activeItem': 'item-loop-div ' ">
+        <div style="margin-left: 4px;">{{point?.slot}}</div>
+      </div>
+    </div>
+
+    <div class="items-main-div2" *ngIf="availableSlots == ''">
+      <img src="../../../assets/imgs/calendar.png" />
+      <div style="color: #6274ff;text-align: center;margin-left: 20px;margin-top: 15px;">{{msg}}</div>
+    </div>
+
+    <div class="global-button" (click)="bookNow()" style="margin: 38px 15px;" *ngIf="this.selectedDate != '' && this.selectedSlot != '' ">
+      <div>{{"others.Book_Appointment" | translate}} </div>
+      <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+    </div>
+  </div>
+</ion-content>

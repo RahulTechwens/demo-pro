@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <ion-buttons>
+      <ion-back-button text="" icon="arrow-back-outline" style="color:#000;margin-top: 12px"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="content-background">
+  <div class="flex-div">
+    <div class=input-form padding>
+      <div class="headingLabel">{{"others.header_title" | translate}}</div>
+
+      <div style="margin-top:45px">
+        <div class="subHeading">{{"signup_page.email_label" | translate}}</div>
+        <div class="passwordContainer" style="padding-right: 0px;">
+          <ion-input type="email" [disabled]="this.userDetails?.email != '' " [(ngModel)]="email" placeholder="{{'signup_page.email_placeholder' | translate}}"
+            class="paswordInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+
+        <div class="subHeading">{{'signup_page.contact_number_label' | translate}}</div>
+        <div class="phone-container">
+          <ion-select [disabled]="this.userDetails?.contact_number != '' " interface="action-sheet" [(ngModel)]="dial_code" placeholder="Select" class="selectBox"
+            placeholder="{{'signup_page.occupation_placeholder' | translate}}">
+            <ion-select-option value="+49">+49</ion-select-option>
+          </ion-select>
+          <ion-input [disabled]="this.userDetails?.contact_number != '' " type="tel" maxLength="15" [(ngModel)]="contact_number"
+            placeholder="{{'signup_page.contact_number_placeholder' | translate}}" class="textInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+        <div class="global-button" (click)="submit()">
+          <!-- <div></div> -->
+          <div>{{'others.continue' | translate}}</div>
+          <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

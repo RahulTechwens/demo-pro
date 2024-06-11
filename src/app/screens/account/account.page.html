@@ -1,0 +1,310 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">{{"myaccount_page.header_title" | translate}}</div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="red">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list style="padding: 25px;">
+    <ion-item lines="none" style="margin-bottom: 10px; border: 0.5px solid #b7babf;">
+      <ion-label>{{"common.select_lang" | translate}}</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="gr">Germany</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div class="main">
+    <div class="avatar-image" (click)="profilePicOptions()">
+      <img [src]="image" />
+    </div>
+    <div class="name-role">
+      <div class="name">{{global?.userdetails?.name}}</div>
+      <div class="member">{{global?.userdetails?.occupation?.name}}</div>
+    </div>
+  </div>
+
+  <div class="formcontainer" style="padding:50px 16px 0;">
+    <div class="title">{{"myaccount_page.about" | translate}}</div>
+    <!-- <div class="subtitle">{{"myaccount_page.personal_info_label" | translate}}</div> -->
+
+    <ion-list class="form-list">
+      <div class="form-group-title">{{"myaccount_page.personal_info_label" | translate}}</div>
+      <ion-label class="input-label">{{"myaccount_page.mobile_label" | translate}}</ion-label>
+      <ion-item lines="none" class="input-item contactinfo">
+        <ion-input type="tel" readonly placeholder="{{'myaccount_page.whatsapp_number_placeholder' | translate}}"
+          class="input-text" [(ngModel)]="contact_number">
+        </ion-input>
+        <ion-icon src="assets/imgs/lock.svg"></ion-icon>
+        <div class="icon-divider"></div>
+        <!-- <ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+      </ion-item>
+      <div style="height: 16px">
+        <!-- <span
+                *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"
+                class="errormsg"
+                >* Enter valid email
+              </span> -->
+      </div>
+      <ion-label class="input-label">{{"myaccount_page.email" | translate}}</ion-label>
+      <ion-item lines="none" class="input-item contactinfo">
+        <ion-input readonly placeholder="{'signup_page.email_placeholder' | translate}}" class="input-text"
+          [(ngModel)]="email"></ion-input>
+        <ion-icon src="assets/imgs/lock.svg"></ion-icon>
+        <div class="icon-divider"></div>
+        <!-- <ion-icon slot="end" src="assets/imgs/icon-edit.svg"></ion-icon> -->
+      </ion-item>
+
+      <div style="height: 16px">
+        <!-- <span
+                *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"
+                class="errormsg"
+                >* Enter valid email
+              </span> -->
+      </div>
+
+      <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <ion-label class="input-label" style="display: flex; align-items: center">
+          {{"myaccount_page.whatsapp_number_placeholder" | translate}}
+        </ion-label>
+        <ion-icon *ngIf="dial_code != '' && wp_number != '' " color="primary" name="add-circle-outline"
+          class="add-circle-icon" (click)="addWhatsappNo()"></ion-icon>
+      </div>
+
+      <div style="display: flex;justify-content: center;flex-direction: row;">
+        <ion-select [(ngModel)]="dial_code" class="textInput" style="width:35%"
+          placeholder="{{'myaccount_page.select' | translate}}" interface="action-sheet">
+          <ion-select-option value="+49">+49</ion-select-option>
+        </ion-select>
+
+        <ion-input type="tel" maxLength="15" [(ngModel)]="wp_number"
+          placeholder="{{'myaccount_page.whatsapp_number_placeholder' | translate}}" class="textInput"
+          style="margin-left:5px" clearOnEdit=false>
+        </ion-input>
+      </div>
+
+      <!-- <ion-item lines="none" class="input-item outline-item">
+          <ion-input class="input-text"></ion-input>
+        </ion-item> -->
+
+      <div class="form-group-title">{{"myaccount_page.basic_info_label" | translate}} </div>
+      <!-- 
+      <ion-label class="input-label">Date of birth</ion-label> -->
+      <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <ion-label class="input-label" style="display: flex; align-items: center">
+          {{"myaccount_page.dob_label" | translate}}
+        </ion-label>
+        <ion-icon *ngIf="!dob_edit" (click)="this.dob_edit = true" slot="end" src="assets/imgs/icon-edit.svg">
+        </ion-icon>
+        <ion-icon *ngIf="dob_edit" color="primary" name="checkmark-sharp" class="add-circle-icon"
+          (click)="saveDetails({key:'dob',value:dob},'update')" style="font-size: 20px;"></ion-icon>
+      </div>
+
+
+      <div class="passwordContainer" style="background-color:#fff;padding-right: 0px;justify-content: flex-start;"
+        *ngIf="!dob_edit">
+        <div style="font-size: 15px;padding-left: 10px;">{{dob}}</div>
+      </div>
+
+      <div class="passwordContainer" style="background-color:#fff;padding-right: 0px;justify-content: flex-start;"
+        *ngIf="dob_edit" id="open-modal">
+        <div style="font-size: 15px;padding-left: 10px;">{{dob}}</div>
+      </div>
+
+      <!-- <div class="passwordContainer" style="padding-right: 0px;" *ngIf="!dob_edit" >
+        <ion-input type="text" readonly placeholder="{{'signup_page.dob_placeholder' | translate}}" [(ngModel)]="dob"
+          class="paswordInput" clearOnEdit=false>
+        </ion-input>
+      </div>
+
+      <div class="passwordContainer" style="padding-right: 0px;" id="open-modal" *ngIf="dob_edit">
+        <ion-input type="text" readonly placeholder="{{'signup_page.dob_placeholder' | translate}}" [(ngModel)]="dob"
+          class="paswordInput" clearOnEdit=false>
+        </ion-input>
+
+      </div> -->
+
+      <ion-modal trigger="open-modal" class="dob-modal" *ngIf="dob_edit ==true">
+        <ng-template>
+          <ion-content>
+            <ion-datetime value="{{dob}}" mode="ios" size="cover" #popoverDatetime presentation="date"
+              (ionChange)="formatDate(popoverDatetime.value)" [max]="maxday"></ion-datetime>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <!-- <div class="flex-space-between date-of-birth">
+          <ion-item lines="none" class="input-item outline-item select-3item">
+            <ion-select
+              interface="popover"
+              class="input-text"
+              placeholder="Day"
+            >
+            
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none" class="input-item outline-item select-3item">
+            <ion-select
+              interface="popover"
+              class="input-text"
+              placeholder="Month"
+            >
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none" class="input-item outline-item select-3item">
+            <ion-select
+              interface="popover"
+              class="input-text"
+              placeholder="Year"
+            >
+            </ion-select>
+          </ion-item>
+        </div> -->
+      <div style="height: 16px">
+        <!-- <span
+                *ngIf="!loginForm.controls.email.valid && (loginForm.controls.email.dirty)"
+                class="errormsg"
+                >* Enter valid email
+              </span> -->
+      </div>
+
+      <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <ion-label class="input-label" style="display: flex; align-items: center">
+          {{"signup_page.gender_label" | translate}}
+        </ion-label>
+        <ion-icon *ngIf="!gender_edit" (click)="this.gender_edit = true" slot="end" src="assets/imgs/icon-edit.svg">
+        </ion-icon>
+        <ion-icon (click)="saveDetails({key:'gender',value:gender},'update')" *ngIf="gender_edit" color="primary"
+          name="checkmark-sharp" class="add-circle-icon" style="font-size: 20px;"></ion-icon>
+      </div>
+      <div>
+        <ion-radio-group class="radiogrp" [(ngModel)]="gender" *ngIf="gender_edit">
+          <div class="radio-btn">
+            <div class="otherLabel" style="margin-left:1px;margin-right:5px">{{"myaccount_page.male" | translate}}</div>
+            <ion-radio slot="start" value="0" style="opacity:1"></ion-radio>
+          </div>
+
+          <div class="radio-btn" style="margin:0px 4px">
+            <div class="otherLabel" style="margin-left:1px;margin-right:5px">{{"myaccount_page.female" | translate}}
+            </div>
+            <ion-radio slot="start" value="1" style="opacity:1"></ion-radio>
+          </div>
+          <div class="radio-btn">
+            <div class="otherLabel" style="margin-left:1px;margin-right:5px">{{"myaccount_page.other" | translate}}
+            </div>
+            <ion-radio slot="start" value="2" style="opacity:1"></ion-radio>
+          </div>
+        </ion-radio-group>
+
+        <div class="passwordContainer" style="background-color:#fff;padding-right: 0px;justify-content: flex-start;"
+          *ngIf="!gender_edit">
+          <div style="font-size: 15px;padding-left: 10px;">{{genderArr[gender]}}</div>
+        </div>
+
+        <!-- <div *ngIf="!gender_edit" style="margin-top: 8px;font-size: 15px;">{{genderArr[gender]}}</div> -->
+      </div>
+
+      <!-- <div class="flex-space-between">
+        <ion-item lines="none" class="input-item outline-item item-two">
+          <ion-label class="checkbox-label">Male</ion-label>
+          <ion-checkbox mode="ios" [checked]="gender== '0'?true:false " (ionChange)="changeGender('0')"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="input-item outline-item item-two">
+          <ion-label class="checkbox-label">Female</ion-label>
+          <ion-checkbox mode="ios" [checked]="gender== '1'?true:false " (ionChange)="changeGender('1')"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="input-item outline-item item-two">
+          <ion-label class="checkbox-label">Others</ion-label>
+          <ion-checkbox mode="ios" [checked]="gender== '2'?true:false " (ionChange)="changeGender('2')"></ion-checkbox>
+        </ion-item>
+      </div> -->
+
+      <div
+        style="margin-top:25px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <ion-label class="input-label" style="display: flex; align-items: center">
+          {{"signup_page.occupation_label" | translate}}
+        </ion-label>
+        <ion-icon *ngIf="!occupation_edit" (click)="this.occupation_edit = true" slot="end"
+          src="assets/imgs/icon-edit.svg">
+        </ion-icon>
+        <ion-icon *ngIf="occupation_edit" color="primary" name="checkmark-sharp" class="add-circle-icon"
+          (click)="saveDetails({key:'occupation',value:occupation},'update')" style="font-size: 20px;"></ion-icon>
+      </div>
+
+      <ion-select *ngIf="occupation_edit" [(ngModel)]="occupation" class="textInput" style="width:100%"
+        placeholder="{{'myaccount_page.select' | translate}}" interface="action-sheet">
+        <ion-select-option *ngFor="let option of occupation_dropdown_arr" [value]="option.id">{{option.name}}
+        </ion-select-option>
+      </ion-select>
+
+      <div class="passwordContainer" style="background-color:#fff;padding-right: 0px;justify-content: flex-start;"
+        *ngIf="!occupation_edit && occupation_dropdown_arr">
+        <div style="font-size: 15px;padding-left: 10px;">{{global?.userdetails?.occupation?.name}}</div>
+      </div>
+    </ion-list>
+
+  </div>
+
+  <div class="divider" style="margin-top: 25px"></div>
+
+  <div class="education-details">
+    <div class="subtitle">{{"myaccount_page.education_label" | translate}}</div>
+    <ion-icon color="primary" *ngIf="!education_edit" style="font-size: 25px;" (click)="toggleEducationDetails('open')"
+      slot="end" name="chevron-down-circle-outline">
+    </ion-icon>
+
+    <ion-icon color="primary" *ngIf="education_edit" slot="end" name="chevron-up-circle-outline"
+      (click)="toggleEducationDetails('close')" style="font-size: 25px;"></ion-icon>
+  </div>
+  <div class="divider"></div>
+
+  <div *ngIf="education_edit">
+    <div class="passwordContainer" style="margin: 11px 13px;">
+      <ion-input type="text" placeholder="{{'myaccount_page.degree_placeholder' | translate}}"
+        [(ngModel)]="highest_qualification" class="paswordInput" clearOnEdit=false (ngModelChange)="typing()">
+      </ion-input>
+    </div>
+
+    <div class="passwordContainer" style="margin: 11px 13px;">
+      <ion-input type="text" placeholder="{{'myaccount_page.university_placeholder' | translate}}"
+        [(ngModel)]="institute_name" class="paswordInput" clearOnEdit=false (ngModelChange)="typing()">
+      </ion-input>
+    </div>
+
+    <div class="button-container" *ngIf="highest_qualification == '' || institute_name == '' ">
+      <div class="global-button" style="background-color: rgb(131, 128, 128);">
+        <div></div>
+        <div>{{"myaccount_page.save_label" | translate}}</div>
+        <div id="saveBtn"></div>
+      </div>
+    </div>
+
+    <div class="button-container" *ngIf="highest_qualification && institute_name">
+      <div class="global-button"
+        (click)="saveDetails({highest_qualification:highest_qualification,institute_name:institute_name},'user/update_educationdetails')">
+        <div></div>
+        <div>{{"myaccount_page.save_label" | translate}}</div>
+        <div id="saveBtn"></div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: #ffff;" *ngIf="this.global?.userdetails?.facebook_id == null">
+  <div class="button-container" style="padding:10px">
+    <div class="global-button" style="background-color: rgb(80, 79, 79);border-radius:0px" (click)="changePassword()">
+      <div></div>
+      <div>{{"myaccount_page.change_pasw_label" | translate}}</div>
+      <div></div>
+    </div>
+
+  </div>
+</ion-footer>

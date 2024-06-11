@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="group-header">
+    <ion-item lines="none">
+      <ion-thumbnail slot="start">
+        <img [src]="global?.image_path+ grpDetails?.data?.profile_picture?.path" />
+      </ion-thumbnail>
+      <div>
+        <div class="title">{{grpDetails?.data?.group_name}}</div>
+        <div class="group-type">
+          <ion-icon color="medium" src="assets/imgs/lock.svg"></ion-icon>
+          {{"home_page.private_group" | translate}}
+        </div>
+        <div class="members-count" *ngIf="grpDetails?.data.members?.length>0">
+          <div class="bullet"></div>
+          {{grpDetails?.data?.members.length}} {{"home_page.members_tab" | translate}}
+        </div>
+        <div class="members-count" *ngIf="grpDetails?.data.members?.length == 0">
+          <div class="bullet"></div>
+          {{"others.no_member" |translate}}
+        </div>
+      </div>
+    </ion-item>
+    <div *ngIf="global.user_role != 'Advisory'">
+      <ion-button class="outline-button" expand="block" fill="outline" (click)="joinRequest()"
+        *ngIf="!grpDetails?.is_member && grpDetails?.data?.is_active && !grpDetails?.is_active_join_req">
+        {{"home_page.join_grp_btn" | translate}}
+      </ion-button>
+    </div>
+
+    <!-- <ion-button class="outline-button" expand="block" fill="outline"
+      *ngIf="grpDetails?.is_active_join_req == true && grpDetails?.data?.is_active" (click)="joinRequest()">
+      {{grpDetails.message == 'Join Request Send Waiting for Admin Approval !' || grpDetails.message == 'Admin Approval
+      Pending '? "PENDING": grpDetails.message}}
+    </ion-button> -->
+
+    <div 
+      class="outline-button-custom" 
+      *ngIf="grpDetails?.is_active_join_req == true && grpDetails?.data?.is_active"
+      (click)="joinRequest()">
+      {{grpDetails.message}}
+    </div>
+
+    <!-- <div class="member-container">
+      <ion-avatar slot="start">
+        <img [src]="global?.image_path+global?.userdetails?.profile_picture?.path" />
+      </ion-avatar>
+      <div>
+        <div class="member-name">{{global?.userdetails?.name}}</div>
+        <div class="member-subtitle">Member of {{grpDetails?.data?.group_name}}</div>
+      </div>
+    </div> -->
+  </div>
+
+  <div class="divider" style="margin-top: 20px"></div>
+
+  <!-- <div class="advisor-card" *ngIf="global.user_role != 'Advisory'">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/p3.png" />
+      </ion-avatar>
+      <div>
+        <div class="subtext">Direct consult with</div>
+        <div class="title">Mario Wolfgang Fröhlich</div>
+        <div class="subtext">Advisor</div>
+      </div>
+    </ion-item>
+    <div class="cam-icon" (click)="gotoAdvisorPage()">
+      <ion-icon name="videocam"></ion-icon>
+    </div>
+  </div> -->
+
+  <!-- Advisor list -->
+
+  <div class="group-list">
+    <div class="title">{{"home_page.members_tab" | translate}}</div>
+    <ion-list lines="none">
+      <ion-item *ngFor="let member of grpDetails?.data?.members" (click)="details()">
+        <img [src]="global?.image_path+member?.user?.profile_picture?.path" style="object-fit:fill;height: 45px;width: 45px;border-radius: 50%;" />
+        <div *ngIf="member?.online == true"  style="width: 10px;height: 10px;border-radius: 50%;background-color: #28ba62;position: absolute;left: 36px;top: 5px;"></div>
+       
+        <div style="margin-left: 8px;width: 100%;">
+          <div class="group-title">{{member?.user?.name}}</div>
+          <div class="group-subtext" *ngIf="member.role.role_name == 'User' ">{{"others.user" | translate}}</div>
+        </div>
+        <ion-icon *ngIf="grpDetails?.is_member == false" slot="end" name="lock-closed"></ion-icon>
+        <ion-icon style="font-size: 25px;" *ngIf="grpDetails?.is_member == true" slot="end"
+          name="chatbubble-ellipses-outline" (click)="gotoChat(member?.user)"></ion-icon>
+        <!-- <ion-button *ngIf="isMember" [routerLink]="['/', 'advisor-details']" mode="ios" slot="end" expand="block"
+          fill="solid" class="arrow-button">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button> --> 
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

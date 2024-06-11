@@ -1,0 +1,19 @@
+<ion-content>
+  <div style="padding: 8px 10px 65px 10px;border-top-right-radius: 30px;border-top-left-radius: 30px;">
+    <div style="display: flex;flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;">
+      <div style="margin-top:15px;background-color:#D6DFDC;width:30px;height:5px;border-radius: 25px;">
+      </div>
+    </div>
+    <div style="display:flex;justify-content: space-between;flex-direction: row;margin-bottom: 20px;">
+      <div style="color: #133A2B;font-size: 18px;margin-top: 26px;font-weight: 600;"></div>
+      <ion-icon name="close-outline" style="font-size:32px" (click)="close()"></ion-icon>
+    </div>
+   
+      <div style="margin-top:12px">
+        <img [src]="global?.image_path+img"  style="width:100%;object-fit: cover;"  *ngFor="let img of allImg; let i=index;" />
+      </div>
+    </div> 
+</ion-content>

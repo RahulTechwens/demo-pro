@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="group-header">
+    <ion-item lines="none">
+      <ion-thumbnail slot="start">
+        <img src="assets/imgs/group1.png" />
+      </ion-thumbnail>
+      <div>
+        <div class="title">Love Hertache</div>
+        <div class="group-type">
+          <ion-icon color="medium" src="assets/imgs/lock.svg"></ion-icon>Private
+          Group
+        </div>
+        <div class="members-count">
+          <div class="bullet"></div>
+          221k+ Members
+          <div class="bullet" style="margin-left: 10px"></div>
+          221k+ Advisor 
+        </div>
+      </div>
+    </ion-item>
+    <ion-button
+      *ngIf="!isMember"
+      class="outline-button"
+      expand="block"
+      fill="outline"
+      (click)="isMember=true"
+    >
+     Join the group
+    </ion-button>
+
+    <div class="member-container" *ngIf="isMember">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/p3.png" />
+      </ion-avatar>
+      <div>
+        <div class="member-name">Ben Schmidt</div>
+        <div class="member-subtitle">Member of Love Hertache</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top: 20px"></div>
+
+  <div class="advisor-card">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/p3.png" />
+      </ion-avatar>
+      <div>
+        <div class="subtext">Direct consult with</div>
+        <div class="title">Mario Wolfgang Fröhlich</div>
+        <div class="subtext">Advisor</div>
+      </div>
+    </ion-item>
+    <div class="cam-icon">
+      <ion-icon name="videocam"></ion-icon>
+    </div>
+  </div>
+
+  <ion-searchbar
+    class="custom-searchbar-header"
+    placeholder="Search..."
+    mode="ios"
+    searchIcon="assets/imgs/search.svg"
+  ></ion-searchbar>
+
+  <!-- Advisor list -->
+
+  <div class="group-list">
+    <div class="title">Advisor</div>
+    <ion-list lines="none">
+      <ion-item *ngFor="let group of [1,1,1,1,1]" (click)="details()">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/p3.png" />
+        </ion-avatar>
+        <div>
+          <div class="group-title">Ben Schmidt</div>
+          <div class="group-subtext">Advocate</div>
+        </div>
+        <ion-icon *ngIf="!isMember" slot="end" name="lock-closed"></ion-icon>
+        <ion-button
+          *ngIf="isMember"
+          [routerLink]="['/', 'advisor-details']"
+          mode="ios"
+          slot="end"
+          expand="block"
+          fill="solid"
+          class="arrow-button"
+        >
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "privategroup",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

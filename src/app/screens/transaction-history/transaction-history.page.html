@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;" *ngIf="global.user_role != 'Advisory'">
+      {{"others.Payment_History" | translate}}</div>
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;" *ngIf="global.user_role == 'Advisory'">
+      {{"others.earning_History" | translate}}</div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="red">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="payHistory != '' ">
+    <div class="card-main" *ngFor="let pay of payHistory?.slice().reverse()">
+      <div class="section1">
+        <div class="payment-wrapper">
+          <!-- <div class="pay-staus">{{pay.payment_for.replaceAll('_', ' ')}}</div> -->
+          <ion-icon name="videocam-outline" *ngIf="pay.payment_for == 'video_call'"></ion-icon>
+          <ion-icon name="people-circle-outline" *ngIf=" pay.payment_for == 'join_request'"></ion-icon>
+        </div>
+        <div class="payment-label">${{convertDecimalPoint(pay.amount)}}</div>
+      </div>
+
+      <div class="section2">
+        <div class="date-label">
+          <div>TXN{{pay.transaction_id}} &nbsp;</div>
+          <ion-icon name="copy-outline" (click)="copyTransactionId(pay.transaction_id)"></ion-icon>
+        </div>
+        <div class="slot-label">
+          <div>{{pay.payer_email}}</div>
+        </div>
+      </div>
+      <div class="border" *ngIf="global.user_role == 'Advisory'"></div>
+      <div class="user-main" *ngIf="global.user_role == 'Advisory'">
+        <img class="avatar" [src]="global?.image_path+pay?.user?.profile_picture?.path" />
+        <div class="details">
+
+          <div>{{pay?.user?.name}}</div>
+          <div>{{pay?.user?.email}}</div>
+        </div>
+      </div>
+      <div style="text-align:right;margin-top:15px;font-size:13px;text-decoration: underline;color:#5367ff"
+        (click)="downloadInvoice(pay.invoice)" *ngIf="global.user_role != 'Advisory'">{{"others.view-invoice" | translate}}</div>
+    </div>
+  </div>
+  <div *ngIf="skeliton_loader == true">
+    <div class="card-main" *ngFor="let pay of [1,1,1,1,1,1,1,1,1,1]">
+      <div class="section1">
+        <div class="payment-wrapper">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      </div>
+
+      <div class="section2">
+        <div class="date-label">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+        <div class="slot-label">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="payHistory == '' && !skeliton_loader" class="notFoundMain">
+    <img src="../../assets/imgs/no-results.png" style="width:65px;opacity:0.8" />
+    <div style="margin-top:10px;font-size: 14px;">{{"other.booking_not_found" | translate}}</div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,77 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-title>{{"home_page.comment_title" | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="modal-close-icon" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="comment-wrapper-body">
+    
+    <div class="comment-reply" *ngFor="let comment of comments">
+      <div class="avatar">
+        <ion-avatar>
+          <img [src]="comment?.user?.profile_picture?.path? api.image_path + comment?.user?.profile_picture?.path : api.image_path+'images/noimage.jpg'"/>
+        </ion-avatar>
+      </div>
+
+      <div style="width: 82%">
+        <div class="name-comment-options">
+          <div class="flex-space-between">
+            <div>
+              <div class="member-name">{{comment?.user.name}} </div>
+              <div class="member-subtitle">{{comment?.created_at}}</div>
+            </div>
+            <!-- <ion-icon name="ellipsis-vertical-outline"></ion-icon> -->
+          </div>
+
+          <div class="comment-body">
+            {{comment?.comment}}
+          </div>
+        </div>
+
+        <!-- <div class="like-reply">
+          <span>Like</span>
+          <span class="ion-padding-start">Reply</span>
+        </div> -->
+        <!-- *ngIf="comment=='0'" -->
+        <!-- <div class="child-comment member-container" >
+          <ion-avatar slot="start">
+            <img src="assets/imgs/p3.png" />
+          </ion-avatar>
+          <div>
+            <div class="member-name">
+              Artur Kulikov <span>Ben Schmidt..</span>
+            </div>
+            <div class="member-subtitle">30 mins</div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <!-- <ion-item lines="none" class="input-item">
+      <ion-input
+        type="multiline"
+        placeholder="Write a comment"
+        class="input-text"
+      ></ion-input>
+      
+    </ion-item> -->
+   
+    <div style="display: flex;justify-content: space-between;padding: 0px 10px 6px 10px;align-items: flex-end;background: #fff;">
+      <!-- <ion-textarea class="txtArea" #hvUserPost type="text"autoGrow="true" [(ngModel)]="comment_content" ></ion-textarea> -->
+      <ion-input
+        type="multiline"
+        placeholder="{{'home_page.write_comment' | translate}}"
+        class="input-text"
+        [(ngModel)]="comment_content"
+      ></ion-input>
+      <div (click)="commentNow()" *ngIf="this.comment_content.trim()" style="padding-left: 10px;">
+       <img src="../../../assets/imgs/send.png" style="width:28px;height:28px"/>
+      </div>
+    </div>
+  </div>
+</ion-content>

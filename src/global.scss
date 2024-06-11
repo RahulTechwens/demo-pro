@@ -1,0 +1,334 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+// FONT USE
+@font-face {
+  font-family: "fontMedium";
+  src: url("/assets/fonts/WorkSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "fontBold";
+  src: url("/assets/fonts/WorkSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "fontRegular";
+  src: url("/assets/fonts/WorkSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "fontSemiBold";
+  src: url("/assets/fonts/WorkSans-SemiBold.ttf");
+}
+
+* {
+  font-family: "fontRegular";
+}
+
+:root {
+  --border: #f5f5f5;
+  --fontTitle: 18px;
+  --fontSmall: 12px;
+  --fontMedium: 13px;
+  --fontBig: 16px;
+  --verticalPadding: 16px;
+  --text-color-primary: #363636;
+  --text-color-secondary: #828793;
+}
+
+ion-header {
+  ion-toolbar {
+    --padding-start: var(--verticalPadding);
+    --padding-end: var(--verticalPadding);
+    --background: var(--ion-color-light);
+
+    ion-back-button,
+    .modal-close-icon {
+      --color: var(--text-color-secondary);
+      --icon-font-size: 16px;
+    }
+
+    ion-title {
+      padding-inline-start: 16px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      font-family: "fontSemiBold";
+    }
+  }
+
+  .button-native {
+    --padding-start: 0px;
+  }
+}
+
+:host(.back-button-has-icon-only) {
+  min-width: 0px;
+}
+
+ion-content {
+  --ion-background-color: var(--ion-color-light);
+}
+
+.swiper-pagination.swiper-pagination-bullets {
+  width: 80%;
+  margin-left: 20px;
+  text-align: left;
+
+  .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.form-list {
+  background: transparent;
+
+  .input-label {
+    font-size: var(--fontSmall);
+    letter-spacing: 0.5px;
+    color: var(--text-color-secondary);
+  }
+
+  .input-item {
+    border-radius: 5px;
+    --padding-start: 0 !important;
+    --inner-padding-end: 0;
+    margin-top: 8px;
+    --min-height: 40px;
+    --background: #fff;
+    --border-color: var(--border);
+    --border-width: 1px;
+
+    &.item-has-focus {
+      --highlight-background: none !important;
+    }
+
+    &.ion-dirty {
+      --highlight-background: none !important;
+    }
+
+    &.ion-invalid {
+      --highlight-background: none !important;
+    }
+
+    &.ion-valid {
+      --highlight-background: none !important;
+    }
+
+    &.ion-touched {
+      --highlight-background: none !important;
+    }
+
+    .input-text {
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      --padding-start: 15px;
+      --padding-end: 10px;
+      height: 40px;
+      --placeholder-color: #a8abb3;
+      --placeholder-opacity: 0.8;
+    }
+
+    ion-select {
+      width: 100%;
+    }
+
+    .input-hide-icon {
+      margin: 0 12px 0;
+      width: 15px;
+      color: #979faa;
+    }
+  }
+
+  .invalid {
+    padding-top: 5px;
+    font-size: 75%;
+    color: #8b0000;
+  }
+}
+
+.error-icon {
+  color: #cf3c4f;
+  font-size: 22px;
+}
+
+.errormsg {
+  color: #cf3c4f;
+  font-size: var(--fontSmall);
+  margin-top: 10px;
+}
+
+.global-button {
+  background-color: var(--ion-color-primary);
+  border-radius: 5px;
+  height: 42px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  color: #fff;
+  font-size: 0.813rem;
+  font-family: "fontMedium";
+  padding: 0 20px;
+  margin-top: 30px;
+
+  &.outline {
+    --background: transparent;
+    color: var(--primary);
+    --border-color: var(--primary);
+  }
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-searchbar-header {
+  --background: #f9f9f9;
+  --border-radius: 4px;
+  --placeholder-color: var(--text-color-secondary);
+  --icon-color: var(--text-color-secondary);
+  padding: 0 16px;
+
+  .searchbar-input-container {
+    height: 40px !important;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+  }
+
+  .searchbar-input {
+    font-size: 12px !important;
+    padding-inline-start: 45px !important;
+  }
+
+  ion-icon {
+    width: 15px !important;
+    padding-left: 10px;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #e2e2e2;
+}
+
+// modals
+
+.drawer-modal {
+  --border-radius: 20px 20px 0px 0px;
+  align-items: flex-end;
+
+  &.payment {
+    --height: 80%;
+  }
+
+  &.comments {
+    --height: 80%;
+  }
+
+  &.date-modal {
+    --height: 90%;
+  }
+}
+
+.create-post{
+  --height: 100%;
+  --width: 100%;
+}
+
+:host ion-datetime.calendar-days-of-week {
+  color: #363636 !important;
+  font-size: 12px;
+  font-family: "fontBold";
+}
+
+ion-item {
+  --highlight-color-focused: white;
+}
+
+item-inner {
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+
+ion-item {
+  --highlight-color-focused: white;
+}
+
+:focus {
+  outline: none;
+}
+
+.date-modal {
+  --height: 350px;
+  --width: 85%;
+  --border-radius:20px !important;
+}
+
+.time-modal{
+  --height: 250px;
+  --width: 85%;
+  --border-radius: 20px  !important;
+}
+.dob-modal{
+  --height: 350px;
+  --width: 85%;
+  --border-radius: 20px  !important;
+}
+.booking-date-modal{
+  // --height: 850px;
+  // --width: 85%;
+  // --border-radius: 20px  !important;
+}
+.forgotPassword-modal {
+  --height: 265px;
+  --width: 95vw !important;
+  --border-radius: 20px  !important;
+}
+
+ion-modal.modal-default {
+  --backdrop-opacity: 0.5 !important;
+  --box-shadow: none;
+}
+
+.changePassword-modal{
+  --height: 55%;
+  --width: 85%;
+  --border-radius: 20px  !important;
+  position: absolute;
+  bottom: 0;
+}
+
+ion-refresher {
+  ion-refresher-content {
+      --color: red;
+    }
+  }
+

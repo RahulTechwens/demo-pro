@@ -1,0 +1,176 @@
+.main {
+  position: relative;
+  padding-top: 56px;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background: #f4f4fc;
+  }
+
+  .avatar-image {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    img {
+      margin: auto;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: fill;
+    }
+  }
+
+  .name-role {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    .name {
+      font-size: 14px;
+      font-family: "fontSemiBold";
+      text-transform: capitalize;
+    }
+
+    .member {
+      font-size: var(--fontSmall);
+      color: var(--text-color-secondary);
+      padding-top: 5px;
+    }
+  }
+}
+
+.title {
+  font-size: var(--fontTitle);
+  font-family: "fontSemiBold";
+  margin-bottom: 16px;
+}
+.subtitle {
+  color: var(--text-color-secondary);
+  font-size: var(--fontMedium);
+}
+
+.formcontainer {
+  padding: 50px 25px 0;
+
+  .form-group-title {
+    font-size: var(--fontSmall);
+    font-family: "fontSemiBold";
+    padding: 25px 0 16px;
+  }
+
+  .contactinfo {
+    --background: #f6f6f9;
+    ion-icon {
+      font-size: 12px;
+    }
+  }
+
+  .icon-divider {
+    background: #ccd0d9;
+    height: 10px;
+    width: 1px;
+    margin-left: 10px;
+  }
+
+  .add-circle-icon {
+    font-size: 25px;
+    margin-right: 16px;
+  }
+
+  .outline-item {
+    --border-color: #e9e9ef;
+  }
+
+  .select-3item {
+    width: 32%;
+  }
+
+  .item-two {
+    width: 47%;
+  }
+
+  ion-checkbox {
+    --size: 18px;
+  }
+
+  .checkbox-label {
+    color: var(--text-color-secondary);
+    font-size: var(--fontSmall);
+    padding-left: 16px;
+  }
+}
+
+.education-details{
+  padding: 15px;
+  display: flex;flex-direction: row;justify-content: space-between;align-items: center;
+}
+
+.button-container{
+  padding: 0 25px 30px;
+}
+
+item-inner { border-bottom-color: transparent !important; box-shadow: none !important; }
+.passwordContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 1px solid #D5DBE1;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 15px;
+  padding-right: 12px;
+  height:50px;
+  letter-spacing: 0.5px;
+}
+
+.textInput{
+  border: 1px solid #D5DBE1;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #121F3E;
+  margin-top:15px;
+  height:50px;
+  padding-right:8px;
+  letter-spacing: 0.5px;
+  background-color: rgb(255, 255, 255);
+  width: 70%;
+}
+
+.radiogrp {
+  display: flex;
+  flex-direction: 'row';
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 15px
+}
+
+.radio-btn{
+  background-color: rgb(255, 255, 255);
+  padding: 4px 6px;display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  //width: 40%;
+}
+
+.paswordInput {
+  font-size: 14px;
+  color: #121F3E;
+  padding-right: 8px;
+  letter-spacing: 0.5px;
+  background-color: rgb(255, 255, 255);
+}
+
+.paswordInput {
+  font-size: 14px;
+  color: #121F3E;
+  padding-right: 8px;
+  letter-spacing: 0.5px;
+  background-color: rgb(255, 255, 255);
+}

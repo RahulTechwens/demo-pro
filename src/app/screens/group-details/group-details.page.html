@@ -1,0 +1,161 @@
+<ion-content scrollEvents="true" (ionScroll)="onScroll($event)">
+  <div class="group-image">
+    <img style="object-fit: cover;"
+      [src]="grpDetails?.data?.profile_picture?.path ? global?.image_path+grpDetails?.data?.profile_picture?.path : null"
+      alt="" />
+    <div class="back-button" (click)="goback()" *ngIf="showBackButton">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </div>
+  </div>
+
+  <div class="group-info">
+    <div class="title">{{grpDetails?.data?.group_name}}</div>
+    <div class="group-type">
+      <ion-icon color="medium" src="assets/imgs/lock.svg"></ion-icon>
+      {{"home_page.private_group" | translate}}
+    </div>
+    <div class="members-count" *ngIf="grpDetails?.data?.members.length>0">
+      <div class="bullet"></div>
+      {{grpDetails?.data?.members.length}} {{"home_page.member" | translate}}
+    </div>
+
+    <div class="members-count" *ngIf="grpDetails?.data?.members.length == 0">
+      <div class="bullet"></div>
+      {{"home_page.no_member" | translate}}
+    </div>
+
+    <div class="members-count" style="margin-top: 9px;">
+      <div class="bullet"></div>
+      {{"home_page.joining_charge" | translate}}
+      <div class="bullet" style="margin-left: 10px"></div>
+      ${{grpDetails?.data?.group_charge}}
+    </div>
+    <!--[routerLink]="['/', 'join-page']"-->
+    <div *ngIf="global.user_role != 'Advisory'">
+      <ion-button class="outline-button" expand="block" fill="outline" (click)="joinRequest()"
+        *ngIf="!grpDetails?.is_member && grpDetails?.data?.is_active && !grpDetails?.is_active_join_req">
+        {{"home_page.join_grp_btn" | translate}}
+      </ion-button>
+
+      <div 
+       class="outline-button-custom" 
+       *ngIf="grpDetails?.is_active_join_req == true && grpDetails?.data?.is_active"
+        (click)="joinRequest()">
+        {{grpDetails.message}}
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top: 30px"></div>
+  </div>
+
+  <div class="small-title" *ngIf="grpDetails?.data?.members != '' ">{{"home_page.member" | translate}}</div>
+  <div class="user-group-container" *ngIf="grpDetails?.data?.members != '' ">
+    <div class="user-group">
+      <div class="img-container" *ngFor="let member of grpDetails?.data?.members | slice:0:4; let i = index">
+        <img [src]="showDp(member)" *ngIf="i == 0" />
+        <img [src]="showDp(member)" *ngIf="i > 0" class="overlap-image" /> 
+      </div>
+      <div class="img-container" *ngFor="let user of grpDetails?.data?.members | slice:4:5; ; let i = index">
+        <div class="more-icon">
+          <ion-icon name="ellipsis-horizontal"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <ion-button *ngIf="grpDetails?.data?.members != '' " fill="solid" class="button-view" (click)="gotoMembersPage()">
+      {{"home_page.view" | translate}}
+    </ion-button>
+  </div>
+
+
+  <ion-segment class="group-details-segment" [(ngModel)]="activeSegment" scrollable mode="md">
+    <ion-segment-button value="about">
+      <ion-label>{{"home_page.about" | translate}}</ion-label>
+    </ion-segment-button>
+    <!-- <ion-segment-button value="discussion">
+      <ion-label>Discussion</ion-label>
+    </ion-segment-button> -->
+    <ion-segment-button value="members">
+      <ion-label>{{"home_page.members_tab" | translate}}</ion-label>
+    </ion-segment-button>
+    <!-- <ion-segment-button value="advisors">
+      <ion-label>Advisors</ion-label>
+    </ion-segment-button> -->
+    <!-- <ion-segment-button value="media">
+      <ion-label>Media</ion-label>
+    </ion-segment-button> -->
+  </ion-segment>
+
+  <div class="about" *ngIf="activeSegment == 'about' ">
+    <div class="title">{{"home_page.about_this_group_title" | translate}}</div>
+    <div class="about-desc">
+      {{grpDetails?.data?.description}}
+    </div>
+    <div class="divider" style="margin-top: 30px"></div>
+  </div>
+
+  <div class="about" *ngIf="activeSegment == 'members' ">
+    <div class="title">{{"home_page.member" | translate}}</div>
+    <div class="about-desc">
+      <div class="about-desc" *ngIf="grpDetails?.data?.members == '' ">
+        {{"home_page.no_member" | translate}}
+      </div>
+
+      <div class="listContainer" *ngFor="let user of grpDetails?.data?.members">
+        <img class="avatar" [src]="global?.image_path+user?.user?.profile_picture?.path" style="object-fit: fill;" />
+        <div class="info_container">
+          <div style="font-size: 14px;margin-left: 7px;font-size: 15px;">{{user?.user?.name}}</div>
+          <div style="font-size: 14px;margin-left: 7px;" *ngIf="user.role.role_name == 'User' ">
+            {{"others.user" | translate}}</div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="divider" style="margin-top: 30px"></div> -->
+    
+  </div>
+
+</ion-content>
+
+ 
+<!--OLD about group-->
+
+<!-- <div class="about">
+  <div class="title">Group Title</div>
+  <div class="about-desc">
+    Group Descriptions
+  </div>
+  <div class="group-type">
+    <ion-icon color="medium" src="assets/imgs/lock.svg"></ion-icon>Private
+  </div>
+
+  <div class="group-desc">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the
+    1500s,
+  </div>
+
+<div class="group-type">
+    <ion-icon color="medium" src="assets/imgs/location.svg"></ion-icon>Germany
+  </div>
+  <div class="divider" style="margin-top: 30px"></div>
+</div>
+
+ <div class="about">
+  <div class="title">Members</div>
+
+  <div class="member-counter">221k+ Members</div>
+  <div class="divider" style="margin-top: 30px"></div>
+</div>
+
+<div class="rules">
+  <div class="title">Group rules from the admins</div>
+  <ol>
+    <li *ngFor="let item of [1,1,1,1]">
+      <div class="list-header">Harmonious Togetherness</div>
+      <div class="list-body">
+        - no insults - no accusations (cheating on lovers etc) - no sexist
+        comments or posts - hitting and harassing people is prohibited
+      </div>
+    </li>
+  </ol>
+</div> -->

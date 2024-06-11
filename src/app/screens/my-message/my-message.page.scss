@@ -1,0 +1,32 @@
+ion-content{
+    .card-main {
+        margin: 12px;
+        padding: 8px 12px 12px 12px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        //border-top: 1px solid red;
+        border-radius: 6px;
+        .border{
+            margin-top:14px;
+            border:1px solid #dbdbdb;
+        }
+        .user-main{
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .avatar{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            .details{
+                margin-left: 8px;
+                div{
+                    font-size: 14px;
+                }
+            }
+            
+        }
+
+    }
+}

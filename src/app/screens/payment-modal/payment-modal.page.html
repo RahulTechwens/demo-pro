@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button class="modal-close-icon" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="amount">
+    <div class="amount-header">Amount to pay</div>
+    <div class="amount-body">$30</div>
+  </div>
+
+  <div style="padding: 25px">
+    <form [formGroup]="stripeForm">
+      <ion-list lines="none" class="form-list">
+        <ion-label position="stacked" class="input-label"
+          >Card Number</ion-label>
+        <ion-item class="input-item" lines="none">
+          <ion-input
+            type="tel"
+            minlength="16"
+            maxlength="16"
+            formControlName="number"
+            class="input-text"
+          ></ion-input>
+        </ion-item>
+        <div style="height: 26px">
+          <small
+            *ngIf="!stripeForm.controls.number.valid && (stripeForm.controls.number.dirty)"
+            class="invalid"
+            >* Enter valid card no.</small
+          >
+        </div>
+
+        <ion-label position="stacked" class="input-label">
+          Card Holder Name
+        </ion-label>
+        <ion-item class="input-item" lines="none">
+          <ion-input
+            type="text"
+            formControlName="name"
+            class="input-text"
+          ></ion-input>
+        </ion-item>
+        <div style="height: 26px">
+          <small
+            *ngIf="!stripeForm.controls.name.valid && (stripeForm.controls.name.dirty)"
+            class="invalid"
+            >* Enter card holder name</small
+          >
+        </div>
+
+        <div
+          style="display: flex; justify-content: space-between"
+          class="item-wrapper"
+        >
+          <div>
+            <ion-label position="stacked" class="input-label"
+              >Expiry Month</ion-label
+            >
+            <ion-item
+              lines="none"
+              style="flex: 0 0 56%; margin-right: 3px"
+              class="input-item"
+            >
+              <ion-input
+                type="text"
+                formControlName="name"
+                class="input-text"
+                placeholder="Feb"
+              ></ion-input>
+
+              <!-- formControlName="monthDate" -->
+            </ion-item>
+          </div>
+          <div>
+            <ion-label position="stacked" class="input-label"
+              >Expiry Year</ion-label
+            >
+            <ion-item lines="none" style="flex: 0 0 39%" class="input-item">
+              <ion-input
+                type="text"
+                formControlName="name"
+                class="input-text"
+                placeholder="2022"
+              ></ion-input>
+            </ion-item>
+          </div>
+        </div>
+      </ion-list>
+
+      <div class="global-button" (click)="close()">
+        <!-- <div></div> -->
+        <div>Pay Now</div>
+        <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+      </div>
+    </form>
+  </div>
+</ion-content>

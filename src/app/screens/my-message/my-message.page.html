@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <div style="padding-left: 10px;font-size:14px;font-weight: 700;">My Message</div>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%" />
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="card-main" *ngFor="let pay of [1,1,1,1,1]">
+    <div class="user-main">
+      <img class="avatar" src="https://randomuser.me/api/portraits/men/29.jpg" />
+      <div class="details">
+        <div>John Doe</div>
+        <div>john@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

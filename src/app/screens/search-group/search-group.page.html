@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-searchbar
+      class="custom-searchbar-header"
+      placeholder="{{'home_page.search_placeholder' | translate}}"
+      mode="ios"
+      searchIcon="assets/imgs/search.svg"
+      [(ngModel)]="search_keyword"
+      (ionChange)="searchGroup()"
+    ></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-buttons>
+        <ion-back-button text="" icon="arrow-back-outline" style="color:#000;margin-bottom: 12px;"></ion-back-button>
+      </ion-buttons>
+    
+    <!-- <ion-buttons slot="start">
+      <ion-buttons>
+        <ion-back-button text="" icon="arrow-back-outline" style="color:#000"></ion-back-button>
+      </ion-buttons>-->
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar type="indeterminate" mode="ios" *ngIf="loading" class="location-progress"></ion-progress-bar>
+  <div class="group-list">
+    <div class="title"></div>
+    <ion-list lines="full">
+      <ion-item *ngFor="let group of search_grpArr">
+        <ion-thumbnail slot="start">
+          <img
+            [src]="group?.profile_picture?.path?api.image_path+group?.profile_picture?.path:api.image_path+'images/noimage.jpg'" />
+        </ion-thumbnail>
+        <div>
+          <div class="group-title">{{group?.group_name}}</div>
+          <div class="group-subtext">${{group?.group_charge}}</div>
+          <!-- <div class="group-subtext">15 Advisory</div> -->
+        </div>
+        <!-- <ion-button (click)="grpdetails(group)" mode="ios" slot="end" expand="block" fill="solid">
+          {{"home_page.join_btn" | translate}}
+        </ion-button> -->
+        <div slot="end" class="join-btn" (click)="grpdetails(group)">{{"home_page.view" | translate}}</div>
+      </ion-item> 
+    </ion-list>
+  </div>
+
+  <div *ngIf="search_grpArr == '' && search_keyword != '' " class="notFoundMain">
+    <img  src="../../assets/imgs/no-results.png" style="width:65px;opacity:0.8" />
+    <div style="margin-top:10px;font-size: 14px;">{{"others.no_data_found" | translate}}</div>
+  </div>
+</ion-content>

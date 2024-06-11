@@ -1,0 +1,294 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-searchbar
+      (click)="searchGrp()"
+      (keypress)="searchGrp()"
+      class="custom-searchbar-header"
+      placeholder="{{'home_page.search_placeholder' | translate}}"
+      mode="ios"
+      searchIcon="assets/imgs/search.svg"
+    ></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/imgs/menu.png" style="width:50%;margin-bottom: 12px;" />
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button >
+        <!-- <ion-icon name="search-outline" style="margin-bottom: 12px;"></ion-icon> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="red">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="main">
+    <div class="avatar-image">
+      <img [src]="global?.image_path+global?.userdetails?.profile_picture?.path" style="object-fit: fill;"/>
+    </div>
+    <div class="name-role">
+      <div class="name">{{global?.userdetails?.name}}</div>
+      <div class="member">{{"others.member" | translate}}</div>
+    </div>
+  </div>
+  <!-- [routerLink]="['/', 'group-post']" -->
+  <div class="group-slider">
+    <div class="title" *ngIf="mygroupArr != '' ">{{"home_page.group_you_joined" | translate}}</div>
+    <ion-slides [options]="slideOptions">
+      <ion-slide *ngFor="let group of mygroupArr">
+        <div class="slide-box" (click)="grpdetails(group)"  >
+          <!-- <div class="group-image" style="height: 130px;">
+            <img
+            style="border-radius:12px;width:100%"
+            [src]="group?.group?.profile_picture?.path? api.image_path+group?.group?.profile_picture?.path : api.image_path+'images/noimage.jpg'" />
+          </div>
+          <div class="shadow-overlay">
+            <div class="group-title">{{group?.group?.group_name}}</div>
+          </div> -->
+          <div class="group-image" style="position: relative;">
+            <div class="main-imageDiv">
+              <img class="custom-img"
+            [src]="group?.group?.profile_picture?.path? api.image_path+group?.group?.profile_picture?.path : api.image_path+'images/noimage.jpg'" />
+            </div>
+            <div class="shadow-overlay">
+              <div class="group-title">{{group?.group?.group_name}}</div>
+            </div>
+          </div>
+
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+  <div class="posts" *ngIf="!skeliton_loader">
+    <div class="post-container" *ngFor="let item of posts">
+      <div class="member-container">
+        <ion-avatar slot="start">
+          <img
+          style="object-fit:fill"
+            [src]="global?.image_path+global?.userdetails?.profile_picture?.path" style="object-fit: fill;"/>
+        </ion-avatar>
+        <div>
+          <div class="member-name">{{global?.userdetails?.name}}</div>
+          <div class="member-name" style="color: #676767;font-size:13px">{{item?.group?.group_name}}</div>
+          
+          <div class="member-subtitle">{{item?.created_at}}</div>
+        </div>
+         <div style="width:47%;justify-content: end;align-items: center;display: flex;">
+          <ion-icon name="ellipsis-vertical-outline" (click)="deletePostActionSheet(item)"></ion-icon>
+         </div>
+       
+      </div>
+
+      <div *ngIf="item?.image_arr != null" style="flex-direction: row;display: flex;flex:1;margin-top: 10px;">
+        <div style="flex-direction: row;display: flex;flex:1;justify-content: space-between;align-items: center;"
+          *ngFor="let data of item?.image_arr | slice:0:2; let i=index;">
+          <div style="display: flex;flex:1; position: relative;min-height: 100%;margin:2px;"
+            (click)="viewImage(item?.image_arr)">
+            <img [src]="api.image_path + data" style="width:100%;object-fit: cover;border-radius: 12px;" alt="" />
+            <div *ngIf="item?.image_arr.length>2 && i==1" style="
+                position: absolute; background-color: #000; top: 0px;
+                width: 100%; height: 100%; opacity: 0.4;
+                display: flex; justify-content: center; align-items: center; ">
+            </div>
+            <div *ngIf="item?.image_arr.length>2 && i==1" style=" position: absolute; top: 0px; width: 100%; height: 100%;
+                display: flex; justify-content: center; align-items: center;
+            ">
+              <div
+                style="top: 0px; width: 100%; height: 80%;display: flex; justify-content: center; align-items: center;font-size: 35px;color:#fff">
+                + {{item?.image_arr.length - 2}}
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="post-caption">{{item?.text_content}}</div>
+
+      <div class="divider" style="margin-top: 16px"></div>
+      <div class="action-section">
+        <div class="like-comment">
+          <div class="like" *ngIf="item?.is_like_by_me[0]?.is_like == '1'" (click)="likePost(item, '0')" style="color:#5367ff" >
+            <ion-icon src="assets/imgs/liked.svg" style="color: #0000;"></ion-icon>{{item?.likes_count}} {{"home_page.like" | translate}}
+          </div>
+          <div class="like" *ngIf="item?.is_like_by_me[0]?.is_like == '0' || item?.is_like_by_me.length == 0" (click)="likePost(item, '1')">
+            <ion-icon src="assets/imgs/like.svg"></ion-icon>{{"home_page.like" | translate}}
+          </div>
+
+          <div class="comment" style="margin-left: 20px" (click)="commentModal(item)" >
+            <ion-icon src="assets/imgs/comment.svg"></ion-icon> {{"home_page.comment" | translate}}
+          </div>
+        </div>
+        <div class="comment-number" *ngIf="item.comment.length >0" (click)="commentModal(item)">{{item.comment_count}} {{"home_page.comment" | translate}}</div>
+      </div>
+      <div class="divider" style="margin-top: 10px"></div>
+
+      <div>
+        <div class="comment-reply" *ngFor="let comment of item.comment">
+          <div class="avatar">
+            <ion-avatar>
+              <img [src]="global?.image_path+global?.userdetails?.profile_picture?.path" style="object-fit: fill;"/>
+            </ion-avatar>
+          </div>
+
+          <div style="width: 82%">
+            <div class="name-comment-options">
+              <div class="flex-space-between">
+                <div>
+                  <div class="member-name">{{comment?.user.name}}</div>
+                  <div class="member-subtitle">{{comment?.created_at}}</div>
+                </div>
+
+              </div>
+
+              <div class="comment-body">
+                {{comment?.comment}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comment-reply" (click)="commentModal(item)">
+          <div class="avatar">
+            <ion-avatar>
+              <img [src]="global?.image_path+global?.userdetails?.profile_picture?.path" style="object-fit: fill;"/>
+            </ion-avatar>
+          </div>
+          <div style="width: 82%">
+            <ion-item lines="none" class="input-item"> </ion-item>
+          </div>
+        </div>
+
+        <div class="divider" style="margin-top: 30px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="skeliton_loader">
+
+    <ion-card *ngFor="let key of [0,0,0,0,0,0,0,0]">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <ion-skeleton-text></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-sm" style="width: 67%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-sm" style="width: 67%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          <ion-skeleton-text style="height: 180px"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="(posts == '' &&   mygroupArr == '') && !skeliton_loader" class="notFoundMain">
+    <img  src="../../assets/imgs/no-results.png" style="width:65px;opacity:0.8" />
+    <div style="margin-top:10px;font-size: 14px;">{{"others.no_data_found" | translate}}</div>
+  </div>
+
+ 
+  <div *ngIf="(posts == '' &&   mygroupArr != '') && !skeliton_loader" class="notFoundMain">
+    <img  src="../../assets/imgs/no-results.png" style="width:65px;opacity:0.8" />
+    <div style="margin-top:10px;font-size: 14px;">{{"others.no_post" | translate}}</div>
+  </div>
+  <!-- <div class="suggested-group">
+    <div class="divider" style="margin-top: 25px"></div>
+    <div class="flex-space-between" style="margin-top: 10px">
+      <div class="title">Suggested Group</div>
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </div>
+    <div class="divider" style="margin-top: 10px"></div>
+  </div> -->
+
+  <!-- <div class="posts">
+    <div class="post-container" *ngFor="let item of [0,1]">
+      <div class="member-container">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/group-avatar.png" />
+        </ion-avatar>
+        <div>
+          <div class="member-name">Ben Schmidt</div>
+          <div class="member-subtitle">30 mins</div>
+        </div>
+      </div>
+
+      <img class="post-image" src="assets/imgs/post1.jpg" alt="" />
+
+      <div class="post-caption">Happy any time without do anything explain</div>
+
+      <div class="divider" style="margin-top: 16px"></div>
+      <div class="action-section">
+        <div class="like-comment">
+          <div class="like">
+            <ion-icon src="assets/imgs/like.svg"></ion-icon>Like
+          </div>
+          <div class="comment" style="margin-left: 20px">
+            <ion-icon src="assets/imgs/comment.svg"></ion-icon>Comment
+          </div>
+        </div>
+        <div class="comment-number">3 Comment</div>
+      </div>
+      <div class="divider" style="margin-top: 10px"></div>
+
+     
+      <div>
+        <div class="comment-reply">
+          <div class="avatar">
+            <ion-avatar>
+              <img src="assets/imgs/p2.png" />
+            </ion-avatar>
+          </div>
+
+          <div style="width: 82%">
+            <div class="name-comment-options">
+              <div class="flex-space-between">
+                <div>
+                  <div class="member-name">Ben Schmidt</div>
+                  <div class="member-subtitle">30 mins</div>
+                </div>
+
+                <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+              </div>
+
+              <div class="comment-body">
+                Happy any time without do anything explain
+              </div>
+            </div>
+
+            <div class="like-reply">
+              <span>Like</span>
+              <span class="ion-padding-start">Reply</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment-reply">
+          <div class="avatar">
+            <ion-avatar>
+              <img src="assets/imgs/p2.png" />
+            </ion-avatar>
+          </div>
+          <div style="width: 82%">
+            <ion-item lines="none" class="input-item"> </ion-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</ion-content>

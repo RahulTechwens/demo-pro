@@ -1,0 +1,109 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-content>
+      <div class="main" (click)="openScreen('account')">
+        <div class="avatar-image">
+          <img [src]="global?.image_path+global?.userdetails?.profile_picture?.path" />
+        </div>
+        <div class="name-role">
+          <div class="name">{{global?.userdetails?.name}}</div>
+          <div class="member">{{global?.userdetails?.occupation?.name}}</div>
+        </div>
+      </div>
+
+      <div class="listmenu">
+        <ion-list lines="none">
+          <ion-menu-toggle (click)="openScreen('home')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.home" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('account')">
+            <ion-item>
+              <ion-label>{{"myaccount_page.header_title" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('my-groups')" *ngIf="global.user_role != 'Advisory'">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.my_group" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('advisor-details')" *ngIf="global.user_role != 'Advisory'">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.book_now" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('my-booking')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.my_booking" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <!-- <ion-menu-toggle *ngIf="global.user_role == 'User'">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.my_advisors" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle> -->
+          <ion-menu-toggle *ngIf="global.user_role == 'Advisory'" (click)="openScreen('my-calender')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.available_slot" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle *ngIf="global.user_role == 'Advisory'" (click)="openScreen('add-consultation-charge')">
+            <ion-item>
+              <ion-label>{{"others.consulaion_fee" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle *ngIf="global.user_role == 'Advisory'" (click)="openScreen('my-leave')">
+            <ion-item>
+              <ion-label>{{"others.leave_date" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('transaction-history')" *ngIf="global.user_role == 'Advisory'">
+            <ion-item>
+              <ion-label>{{"others.earning_History" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle (click)="openScreen('transaction-history')" *ngIf="global.user_role != 'Advisory'">
+            <ion-item>
+              <ion-label>{{"others.Payment_History" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <!-- <ion-menu-toggle (click)="openScreen('my-message')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.my_message" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle> -->
+          <ion-menu-toggle (click)="openScreen('cms-page')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.about" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('privacy-policy')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.privacy_policy" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('terms-and-conditions')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.terms" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('contact-us')">
+            <ion-item>
+              <ion-label>{{"home_page.contact-us" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle (click)="openScreen('logout')">
+            <ion-item>
+              <ion-label>{{"sidemenu_page.logout" | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

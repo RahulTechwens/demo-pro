@@ -1,0 +1,54 @@
+<ion-content padding class="content-background">
+  <ion-list style="padding-bottom: 0px;">
+    <ion-item lines="none" style=" border-bottom: 0.5px solid #b7babf;">
+      <ion-label>{{"common.select_lang" | translate}}</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="gr">Germany</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div class="flex-div">
+    <div class=input-form padding>
+      <div class="headingLabel">{{"login_page.header_title" | translate}}</div>
+      <div class="headingLabel" style="margin-top: 4px">{{"login_page.subheader_title" | translate}}</div>
+      <div style="margin-top:45px">
+        <div class="passwordContainer" style="padding-right: 0px;">
+          <ion-input type="email" [(ngModel)]="email" placeholder='{{"login_page.login_id_placeholder" | translate}}'
+            class="paswordInput" clearOnEdit=false>
+          </ion-input>
+        </div>
+
+        <div class="passwordContainer">
+          <ion-input [type]="passwordType" [(ngModel)]="password"
+            placeholder='{{"login_page.password_placeholder" | translate}}' class="paswordInput" clearOnEdit=false>
+          </ion-input>
+          <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)="hideShowPassword()"
+            class="icon"></ion-icon>
+        </div>
+
+        <div class="forgotPass" (click)="forgotPassword()">
+          {{"login_page.forgot_password_title" | translate}}
+        </div>
+      </div>
+ 
+      <div class="global-button" (click)="login()">
+        <div>{{'login_page.signin_account' | translate}}</div>
+        <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+      </div>
+
+      <div class="social-login-title">{{"login_page.social_login_text" | translate}}</div>
+
+      <div (click)="fblogin()" class="global-button" style="margin-top:22px;background-color:#fff;color:#000;box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;">
+        <div>{{"login_page.facebook_login_text" | translate}}</div>
+        <ion-icon slot="end" name="logo-facebook" style="color:#4267B2;font-size:25px"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer >
+  <div (click)="gotoRegistionPage()">{{'login_page.create_account' | translate}}</div>
+</ion-footer>

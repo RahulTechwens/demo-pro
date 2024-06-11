@@ -1,0 +1,31 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>welcome</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="welcome-page-body" [scrollY]="false">
+  <ion-slides pager="true"  class="welcome-slider">
+    <ion-slide class="each-slider" *ngFor="let data of [1,1,1]">
+      <div class="slider-content-wrapper">
+        <div class="slider-title">
+          {{"welcome_page.title" | translate}}
+        </div>
+      </div>
+      <div class="slider-img">
+        <img src="./assets/imgs/welcome-baner.svg" />
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <div class="button-container">
+    <div
+      class="global-button"
+      (click)="skip()"
+      style="margin-bottom: 16px"
+    >
+      <!-- <div></div> -->
+      <div>{{"common.skip_btn_label" | translate}}</div>
+      <ion-icon src="../../assets/imgs/right-arrow.svg"></ion-icon>
+    </div>
+  </div>
+</ion-content>

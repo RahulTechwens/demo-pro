@@ -1,0 +1,101 @@
+ion-toolbar {
+    --background: #e9e7ff;
+  }
+ion-content {
+    .card-main {
+        margin: 12px;
+        padding: 8px 12px 12px 12px;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        //border-top: 1px solid red;
+        border-radius: 6px;
+        background-color: #fff;
+        border-left: 4px solid #5368ff;
+        .section1 {
+            display: flex;
+
+            .payment-wrapper {
+                width: 22%;
+                //background: rgb(83, 104, 255);
+                //background: linear-gradient(90deg, rgba(83, 104, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                text-align: center;
+                padding: 4px;
+                border-radius: 4px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                ion-icon {
+                    font-size: 35px;
+                    color: rgb(83, 104, 255);
+                    color: linear-gradient(90deg, rgba(83, 104, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
+                }
+
+                .pay-staus {
+                    color: #fff;
+                    font-size: 14px;
+                    text-transform: capitalize !important;
+                }
+            }
+
+            .payment-label {
+                width: 78%;
+                text-align: right;
+                font-size: 18px;
+            }
+        }
+
+        .section2 {
+            margin-top: 0px;
+            display: flex;
+            flex-direction: column;
+
+            .date-label {
+                margin-top: 10px;
+                font-size: 15px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .slot-label {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 15px;
+                margin-top: 4px;
+            }
+        }
+
+        .border{
+            margin-top:14px;
+            border:1px solid #dbdbdb;
+        }
+        .user-main{
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .avatar{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            .details{
+                margin-left: 8px;
+                div{
+                    font-size: 14px;
+                }
+            }
+            
+        }
+
+    }
+}
+
+.notFoundMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+  }
