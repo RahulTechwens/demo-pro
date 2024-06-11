@@ -12,8 +12,8 @@ export class ApiService {
  //public uri = 'https://p74.dev8.ivantechnology.in/privategroup/api';
  //public image_path = "https://p74.dev8.ivantechnology.in/privategroup/public/"
  
- public uri = ' http://127.0.0.1:8000/api';
-//  public uri = 'https://p74.ivantechnology.in/privategroup/api';
+//  public uri = ' http://127.0.0.1:8000/api';
+ public uri = 'https://p74.ivantechnology.in/privategroup/api';
 // 
 
  public image_path = "https://p74.ivantechnology.in/privategroup/public/"
