@@ -18,7 +18,7 @@ export class ApiService {
 
 // 
 
- public image_path = "https://p74.ivantechnology.in/privategroup/public/"
+ public image_path = "https://icon.techwens.co.in/public/"
 
   constructor(
     public http: HttpClient,    
