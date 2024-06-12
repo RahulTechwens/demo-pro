@@ -14,7 +14,7 @@ export class ApiService {
  
 //  public uri = ' http://127.0.0.1:8000/api';
 //  public uri = 'https://p74.ivantechnology.in/privategroup/api';
- public uri = 'https://icon.techwens.co.in/privategroup/api';
+ public uri = 'https://icon.techwens.co.in/api';
 
 // 
 
