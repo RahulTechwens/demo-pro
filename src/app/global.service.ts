@@ -14,8 +14,12 @@ export class GlobalService {
   public userdetails: any = {};
   //public image_path = "https://dev8.ivantechnology.in/privategroup/public/"
 
-  public base_ul = "https://p74.ivantechnology.in/privategroup/api";
-  public image_path = "https://p74.ivantechnology.in/privategroup/public/"
+  // public base_ul = "https://p74.ivantechnology.in/privategroup/api";
+  public base_ul = "https://icon.techwens.co.in/api";
+
+  // public image_path = "https://p74.ivantechnology.in/privategroup/public/"
+  public image_path = "https://icon.techwens.co.in/public/"
+
   public user_role: any = "";
   
 
